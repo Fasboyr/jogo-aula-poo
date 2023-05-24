@@ -6,8 +6,9 @@ public class principal extends JFrame {
     public principal(){
         setVisible(true);
         setSize(500, 500);
-        setTitle("Meu Jogo");
+        this.setTitle("Meu Jogo");
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
     }
