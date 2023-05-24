@@ -2,10 +2,15 @@ package br.ifpr.jogo.principal;
 
 import javax.swing.JFrame;
 
+import br.ifpr.jogo.modelo.Fase;
+
 public class principal extends JFrame {
     public principal(){
+        Fase fase  = new Fase();
+        super.add(fase);
+
         setVisible(true);
-        setSize(500, 500);
+        setSize(1200, 800);
         this.setTitle("Meu Jogo");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
