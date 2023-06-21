@@ -13,7 +13,8 @@ public class principal extends JFrame {
         setSize(1200, 800);
         this.setTitle("Meu Jogo");
         setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);;
 
 
     }

@@ -27,7 +27,7 @@ public class Personagem {
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\nave.jpg");
+        ImageIcon carregando = new ImageIcon("recursos\\nave2.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);
@@ -53,6 +53,19 @@ public class Personagem {
             case KeyEvent.VK_LEFT:
                 this.deslocamentoEmX = -this.velocidadeDeDeslocamento;
             break;
+
+            case KeyEvent.VK_W:
+                this.deslocamentoEmY = -this.velocidadeDeDeslocamento;
+            break;
+            case KeyEvent.VK_S:
+                this.deslocamentoEmY = this.velocidadeDeDeslocamento;
+            break;
+            case KeyEvent.VK_D:
+                this.deslocamentoEmX = this.velocidadeDeDeslocamento;
+            break;
+            case KeyEvent.VK_A:
+                this.deslocamentoEmX = -this.velocidadeDeDeslocamento;
+            break;
         
             default:
                 break;
@@ -73,6 +86,19 @@ public class Personagem {
                 this.deslocamentoEmX = 0;
             break;
             case KeyEvent.VK_LEFT:
+                this.deslocamentoEmX = 0;
+            break;
+
+            case KeyEvent.VK_W:
+                this.deslocamentoEmY = 0;
+            break;
+            case KeyEvent.VK_S:
+                this.deslocamentoEmY = 0;
+            break;
+            case KeyEvent.VK_D:
+                this.deslocamentoEmX = 0;
+            break;
+            case KeyEvent.VK_A:
                 this.deslocamentoEmX = 0;
             break;
             default:
