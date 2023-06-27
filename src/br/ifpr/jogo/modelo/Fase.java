@@ -7,7 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -18,6 +19,7 @@ public class Fase extends JPanel implements KeyListener, ActionListener {
     private Personagem personagem;
     private Timer timer;
 
+    private static final int LARGURA_DA_JANELA = 1200;
     private static final int DELAY = 5;
     private static final int VELOCIDADE_DE_DESLOCAMENTO = 3;
     
@@ -44,9 +46,21 @@ public class Fase extends JPanel implements KeyListener, ActionListener {
 
         graficos.drawImage(fundo, 0, 0, null);
         graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
+        // Recuperar a nossa lista de tiros (getTiros) e atribuímos para uma variável
+        // local chamada tiros.
+        List<Tiro> tiros = personagem.getTiros();
+        // Criando um laço de repetição (foreach). Iremos percorrer toda a lista.
+        for (Tiro tiro : tiros) {
+            // Carregando imagem do objeto tiro pelo método carregar.
+            tiro.carregar();
+            // Desenhar o tiro na nossa tela.
+            graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
+        }
         g.dispose();
 
     }
+
+    
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -54,7 +68,10 @@ public class Fase extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        this.personagem.mover(e);
+    if (e.getKeyCode() == KeyEvent.VK_SPACE)
+        personagem.atirar();
+    else
+        personagem.mover(e);
     }
 
     @Override

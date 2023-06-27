@@ -2,6 +2,8 @@ package br.ifpr.jogo.modelo;
 
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 
@@ -14,9 +16,16 @@ public class Personagem {
     private int larguraImagem;
     private int alturaImagem;
     private int velocidadeDeDeslocamento;
+    private List <Tiro> tiros;
 
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
+
+    public Personagem(){
+        this.posicaoEmX = POSIOCAO_INICIAL_EM_X;
+        this.posicaoEmY = POSIOCAO_INICIAL_EM_y;
+        this.tiros = new ArrayList<Tiro>();
+    }
 
 
     public Personagem(int velocidadeDeDeslocamento){
@@ -27,7 +36,7 @@ public class Personagem {
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\nave2.png");
+        ImageIcon carregando = new ImageIcon("recursos\\nave3.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);
@@ -36,6 +45,14 @@ public class Personagem {
     public void atualizar(){
         this.posicaoEmX = this.posicaoEmX + this.deslocamentoEmX;
         this.posicaoEmY = this.posicaoEmY + this.deslocamentoEmY;
+    }
+
+
+    public void atirar() {
+        int meioDaNave = this.posicaoEmX + (this.larguraImagem / 2);
+        int frenteDaNave = this.posicaoEmY + this.alturaImagem;
+        Tiro tiro = new Tiro(meioDaNave, frenteDaNave); 
+        this.tiros.add(tiro);
     }
 
      public void mover(KeyEvent tecla) {
@@ -162,5 +179,21 @@ public class Personagem {
         this.alturaImagem = alturaImagem;
     }
 
+
+    public int getVelocidadeDeDeslocamento() {
+        return this.velocidadeDeDeslocamento;
+    }
+
+    public void setVelocidadeDeDeslocamento(int velocidadeDeDeslocamento) {
+        this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
+    }
+
+    public List<Tiro> getTiros() {
+        return this.tiros;
+    }
+
+    public void setTiros(List<Tiro> tiros) {
+        this.tiros = tiros;
+    }
 
 }

@@ -17,7 +17,7 @@ public class Tiro {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon("recursos\\tiro.png");
+        ImageIcon carregando = new ImageIcon("recursos\\tiro2.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);
