@@ -10,7 +10,7 @@ public class principal extends JFrame {
         super.add(fase);
 
         setVisible(true);
-        setSize(1200, 800);
+        setSize(1600, 900);
         this.setTitle("Meu Jogo");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

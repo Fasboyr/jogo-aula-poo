@@ -3,7 +3,7 @@ package br.ifpr.jogo.modelo;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.List;
+
 
 import javax.swing.ImageIcon;
 
@@ -16,7 +16,7 @@ public class Personagem {
     private int larguraImagem;
     private int alturaImagem;
     private int velocidadeDeDeslocamento;
-    private List <Tiro> tiros;
+    private ArrayList<Tiro> tiros;
 
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
@@ -31,12 +31,13 @@ public class Personagem {
     public Personagem(int velocidadeDeDeslocamento){
              this.posicaoEmX = POSIOCAO_INICIAL_EM_X;
              this.posicaoEmY = POSIOCAO_INICIAL_EM_y;
+             this.tiros = new ArrayList<Tiro>();
              this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
 
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\nave3.png");
+        ImageIcon carregando = new ImageIcon("recursos\\naveHorizontal.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);
@@ -49,9 +50,9 @@ public class Personagem {
 
 
     public void atirar() {
-        int meioDaNave = this.posicaoEmX + (this.larguraImagem / 2);
-        int frenteDaNave = this.posicaoEmY + this.alturaImagem;
-        Tiro tiro = new Tiro(meioDaNave, frenteDaNave); 
+        int frenteDaNave = this.posicaoEmX + this.larguraImagem;
+        int meioDaNave = this.posicaoEmY + (this.alturaImagem / 2);
+        Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
     }
 
@@ -188,11 +189,11 @@ public class Personagem {
         this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
     }
 
-    public List<Tiro> getTiros() {
+    public ArrayList<Tiro> getTiros() {
         return this.tiros;
     }
 
-    public void setTiros(List<Tiro> tiros) {
+    public void setTiros(ArrayList<Tiro> tiros) {
         this.tiros = tiros;
     }
 
