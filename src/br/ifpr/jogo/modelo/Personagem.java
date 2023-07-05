@@ -34,7 +34,7 @@ public class Personagem extends ElementoGrafico {
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\naveHorizontal.png");
+        ImageIcon carregando = new ImageIcon("recursos\\nave.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);

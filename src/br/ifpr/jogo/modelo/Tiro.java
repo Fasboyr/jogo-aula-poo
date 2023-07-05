@@ -11,7 +11,7 @@ public class Tiro extends ElementoGrafico {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon("recursos\\tiro3.png");
+        ImageIcon carregando = new ImageIcon("recursos\\tiro.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);

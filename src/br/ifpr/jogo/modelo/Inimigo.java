@@ -12,7 +12,7 @@ public class Inimigo extends ElementoGrafico {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon("recursos\\meteoro3.png");
+        ImageIcon carregando = new ImageIcon("recursos\\meteoro.png");
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);
