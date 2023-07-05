@@ -1,20 +1,14 @@
 package br.ifpr.jogo.modelo;
 
-import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 
 import javax.swing.ImageIcon;
 
-public class Personagem {
-    private int posicaoEmX;
-    private int posicaoEmY;
+public class Personagem extends ElementoGrafico {
     private int deslocamentoEmX;
     private int deslocamentoEmY;
-    private Image imagem;
-    private int larguraImagem;
-    private int alturaImagem;
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
 
@@ -124,21 +118,6 @@ public class Personagem {
         }
     }
 
-    public int getPosicaoEmX() {
-        return this.posicaoEmX;
-    }
-
-    public void setPosicaoEmX(int posicaoEmX) {
-        this.posicaoEmX = posicaoEmX;
-    }
-
-    public int getPosicaoEmY() {
-        return this.posicaoEmY;
-    }
-
-    public void setPosicaoEmY(int posicaoEmY) {
-        this.posicaoEmY = posicaoEmY;
-    }
 
     public int getDeslocamentoEmX() {
         return this.deslocamentoEmX;
@@ -155,32 +134,6 @@ public class Personagem {
     public void setDeslocamentoEmY(int deslocamentoEmY) {
         this.deslocamentoEmY = deslocamentoEmY;
     }
-
-    public Image getImagem() {
-        return this.imagem;
-    }
-
-    public void setImagem(Image imagem) {
-        this.imagem = imagem;
-    }
-
-    public int getLarguraImagem() {
-        return this.larguraImagem;
-    }
-
-    public void setLarguraImagem(int larguraImagem) {
-        this.larguraImagem = larguraImagem;
-    }
-
-    public int getAlturaImagem() {
-        return this.alturaImagem;
-    }
-
-    public void setAlturaImagem(int alturaImagem) {
-        this.alturaImagem = alturaImagem;
-    }
-
-
     public int getVelocidadeDeDeslocamento() {
         return this.velocidadeDeDeslocamento;
     }
