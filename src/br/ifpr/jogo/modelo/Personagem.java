@@ -73,7 +73,7 @@ public class Personagem extends ElementoGrafico {
             break;
             case KeyEvent.VK_RIGHT:
                 this.deslocamentoEmX = this.velocidadeDeDeslocamento;
-            break;
+             break;
             case KeyEvent.VK_LEFT:
                 this.deslocamentoEmX = -this.velocidadeDeDeslocamento;
             break;

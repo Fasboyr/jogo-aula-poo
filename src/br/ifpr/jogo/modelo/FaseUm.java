@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.security.Principal;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -19,6 +20,8 @@ public class FaseUm extends Fase {
 
         personagem = new Personagem(VELOCIDADE_DE_DESLOCAMENTO); // + Criação do objeto Personagem
         personagem.carregar(); // + Carregando as informações do nosso personagem
+
+        this.inicializaElementosGraficosAdicionais();
 
         this.inicializaInimigos();
 
@@ -42,6 +45,13 @@ public class FaseUm extends Fase {
     public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
         if (emJogo) {
+            graficos.drawImage(fundo, 0, 0, null);
+            // Criando um laço de repetição (foreach). Iremos percorrer toda a lista.
+            for (Estrela estrela : estrelas) {
+                // Desenhar o asteroide na nossa tela.
+                graficos.drawImage(estrela.getImagem(), estrela.getPosicaoEmX(),estrela.getPosicaoEmY(), this);
+            }
+        
             graficos.drawImage(fundo, 0, 0, null);
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
             // Recuperar a nossa lista de tiros (getTiros) e atribuímos para uma variável
@@ -74,6 +84,7 @@ public class FaseUm extends Fase {
             graficos.drawImage(fimDeJogo.getImage(), 350, 100, null);
         }
         g.dispose();
+        
     }
 
     @Override
@@ -126,20 +137,16 @@ public class FaseUm extends Fase {
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
-        // Recuperar a nossa lista de tiros (getTiros) e atribuímos para uma variável
-        // local chamada tiros.
+        for (Estrela estrela : this.estrelas) {
+            estrela.atualizar();
+        }
         ArrayList<Tiro> tiros = personagem.getTiros();
-        // Criando um laço de repetição (for). Iremos percorrer toda a lista.
         for (int i = 0; i < tiros.size(); i++) {
-            // Obter o objeto tiro da posicao i do ArrayList
+
             Tiro tiro = tiros.get(i);
-            // Verificar se (if) a posição do x (tiro.getPosicaoEmX()) é maior do que a
-            // largura da nossa janela
             if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA || !tiro.getEhVisivel())
-                // Remover da lista se estiver fora do campo de visão (LARGURA_DA_JANELA)
                 tiros.remove(tiro);
             else
-                // Atualizar a posição do tiro.
                 tiro.atualizar();
         }
 
@@ -175,4 +182,15 @@ public class FaseUm extends Fase {
         this.verficarColisoes();
         repaint();
     }
+
+    @Override
+    public void inicializaElementosGraficosAdicionais() {
+    super.estrelas = new ArrayList<Estrela>();
+    for (int i = 0; i < QTDE_DE_INIMIGOS; i++) {
+        int x = (int) (Math.random() * 1600);
+        int y = (int) (Math.random() * 900);
+        Estrela estrela = new Estrela(x, y);
+        super.estrelas.add(estrela);
+    }
+}
 }
