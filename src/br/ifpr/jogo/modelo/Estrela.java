@@ -1,7 +1,6 @@
 package br.ifpr.jogo.modelo;
 
-import java.awt.Image;
-import java.security.Principal;
+
 
 import javax.swing.ImageIcon;
 
@@ -15,7 +14,7 @@ public class Estrela extends ElementoGrafico {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon("recursos\\dust.png");
+        ImageIcon carregando = new ImageIcon("recursos\\stars.png");
         super.setImagem(carregando.getImage());
     }
 

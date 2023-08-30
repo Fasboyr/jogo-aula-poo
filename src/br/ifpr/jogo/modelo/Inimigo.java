@@ -22,5 +22,7 @@ public class Inimigo extends ElementoGrafico {
     public void atualizar() {
     this.posicaoEmX = this.posicaoEmX - VELOCIDADE;
     }
+
+    
 }
 

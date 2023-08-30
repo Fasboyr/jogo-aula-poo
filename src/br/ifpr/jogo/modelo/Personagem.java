@@ -12,6 +12,8 @@ public class Personagem extends ElementoGrafico {
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
+    private int pontuacao;
+    private int vida = 3 ;
 
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
@@ -32,7 +34,16 @@ public class Personagem extends ElementoGrafico {
              this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
 
     }
-
+/* 
+    public void verificarBorda(){
+        if(posicaoEmX < 0){
+            posicaoEmX = 0;
+        }
+        else if(posicaoEmX > 1600){
+            posicaoEmX = 1600 - 100;
+        }
+    }
+*/
     public void carregar(){
         ImageIcon carregando = new ImageIcon("recursos\\nave.png");
         this.imagem = carregando.getImage();
@@ -129,6 +140,7 @@ public class Personagem extends ElementoGrafico {
                 break;
         }
     }
+    
 
 
     public int getDeslocamentoEmX() {
@@ -168,6 +180,23 @@ public class Personagem extends ElementoGrafico {
 
     public void setSuperTiros(ArrayList<SuperTiro> superTiros) {
         this.superTiros = superTiros;
+    }
+
+    public int getPontuacao() {
+        return this.pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+    
+
+    public int getVida() {
+        return this.vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
     }
 
 }

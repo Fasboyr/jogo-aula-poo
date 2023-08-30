@@ -12,21 +12,22 @@ import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 public class FaseUm extends Fase {
+    private static final int PONTOS_POR_INIMIGO = 10;
+    private static final int VIDA_POR_COLISAO = 1;
 
-    public FaseUm() { // Linha adicionada (+)
-        super(); // Chamada do construtor da classe super
+    public FaseUm() { 
+        super(); 
+        this.emJogo = true;
         ImageIcon carregando = new ImageIcon("recursos\\background.jpg");
         fundo = carregando.getImage();
-
-        personagem = new Personagem(VELOCIDADE_DE_DESLOCAMENTO); // + Criação do objeto Personagem
-        personagem.carregar(); // + Carregando as informações do nosso personagem
+        personagem = new Personagem(VELOCIDADE_DE_DESLOCAMENTO);
+        personagem.carregar(); 
 
         this.inicializaElementosGraficosAdicionais();
 
         this.inicializaInimigos();
-
-        timer = new Timer(DELAY, this); // + Criação do objeto Timer
-        timer.start(); // + Iniciando o nosso jogo
+        timer = new Timer(DELAY, this); 
+        timer.start(); 
     }
 
     @Override
@@ -42,26 +43,29 @@ public class FaseUm extends Fase {
     }
 
     @Override
+    public void inicializaElementosGraficosAdicionais() {
+        super.estrelas = new ArrayList<Estrela>();
+        for (int i = 0; i < QTDE_DE_ESTRELAS; i++) {
+            int x = (int) (Math.random() * 1600);
+            int y = (int) (Math.random() * 900);
+            Estrela estrela = new Estrela(x, y);
+            super.estrelas.add(estrela);
+        }
+    }
+
+    @Override
     public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
         if (emJogo) {
             graficos.drawImage(fundo, 0, 0, null);
-            // Criando um laço de repetição (foreach). Iremos percorrer toda a lista.
             for (Estrela estrela : estrelas) {
-                // Desenhar o asteroide na nossa tela.
                 graficos.drawImage(estrela.getImagem(), estrela.getPosicaoEmX(),estrela.getPosicaoEmY(), this);
             }
         
-            graficos.drawImage(fundo, 0, 0, null);
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
-            // Recuperar a nossa lista de tiros (getTiros) e atribuímos para uma variável
-            // local chamada tiros.
             ArrayList<Tiro> tiros = personagem.getTiros();
-            // Criando um laço de repetição (foreach). Iremos percorrer toda a lista.
-            for (Tiro tiro : tiros) {
-                // Carregando imagem do objeto tiro pelo método carregar.
+            for (Tiro tiro : tiros) { 
                 tiro.carregar();
-                // Desenhar o tiro na nossa tela.
                 graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
             }
 
@@ -72,13 +76,13 @@ public class FaseUm extends Fase {
             }
 
 
-            // Criando um laço de repetição (foreach). Iremos percorrer toda a lista.
+            
             for (Inimigo inimigo : inimigos) {
-                // Carregando imagem do objeto inimigo pelo método carregar.
                 inimigo.carregar();
-                // Desenhar o inimigo na nossa tela.
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
+            super.desenhaPontuacao(graficos);
+            super.desenhaVida(graficos);
         }   else {
             ImageIcon fimDeJogo = new ImageIcon("recursos\\gameover.png");
             graficos.drawImage(fimDeJogo.getImage(), 350, 100, null);
@@ -94,10 +98,17 @@ public class FaseUm extends Fase {
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
             if (formaInimigo.intersects(formaPersonagem)) {
-                this.personagem.setEhVisivel(false);
+                int vidaAtual = this.personagem.getVida();
+                if (vidaAtual == 0) {
+                    this.personagem.setEhVisivel(false);
+                    inimigo.setEhVisivel(false);
+                    emJogo = false;
+                }
+                this.personagem.setVida(vidaAtual - VIDA_POR_COLISAO);
                 inimigo.setEhVisivel(false);
-                emJogo = false;
+
             }
+            
             ArrayList<Tiro> tiros = this.personagem.getTiros();
             for (int j = 0; j < tiros.size(); j++) {
                 Tiro tiro = tiros.get(j);
@@ -105,7 +116,12 @@ public class FaseUm extends Fase {
                 if (formaInimigo.intersects(formaTiro)) {
                     inimigo.setEhVisivel(false);
                     tiro.setEhVisivel(false);
-
+                }
+                if (formaInimigo.intersects(formaTiro)) {
+                    int pontuacaoAtual = this.personagem.getPontuacao();
+                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
+                    inimigo.setEhVisivel(false);
+                    tiro.setEhVisivel(false);
                 }
             }
             ArrayList<SuperTiro> superTiros = this.personagem.getSuperTiros();
@@ -115,7 +131,14 @@ public class FaseUm extends Fase {
                 if (formaInimigo.intersects(formaSuper)) {
                     inimigo.setEhVisivel(false);
                 }
+                if (formaInimigo.intersects(formaSuper)) {
+                    int pontuacaoAtual = this.personagem.getPontuacao();
+                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
+                    inimigo.setEhVisivel(false);
+                }
             }
+            
+            
         }
     }
 
@@ -161,36 +184,22 @@ public class FaseUm extends Fase {
                 // Remover da lista se estiver fora do campo de visão (LARGURA_DA_JANELA)
                 superTiros.remove(superTiro);
             else
-                // Atualizar a posição do tiro.
+        
                 superTiro.atualizar();
         }
 
 
-        // Criando um laço de repetição (for). Iremos percorrer toda a lista.
+
         for (int i = 0; i < this.inimigos.size(); i++) {
-            // Obter o objeto inimigo da posicao i do ArrayList
             Inimigo inimigo = this.inimigos.get(i);
-            // Verificar se (if) a posição do x (inimigo.getPosicaoEmX()) é maior do que a
-            // largura da nossa janela
             if (inimigo.getPosicaoEmX() < 0 || !inimigo.getEhVisivel())
-                // Remover da lista se estiver fora do campo de visão (0)
                 inimigos.remove(inimigo);
             else
-                // Atualizar a posição do inimigo.
                 inimigo.atualizar();
         }
         this.verficarColisoes();
         repaint();
     }
 
-    @Override
-    public void inicializaElementosGraficosAdicionais() {
-    super.estrelas = new ArrayList<Estrela>();
-    for (int i = 0; i < QTDE_DE_INIMIGOS; i++) {
-        int x = (int) (Math.random() * 1600);
-        int y = (int) (Math.random() * 900);
-        Estrela estrela = new Estrela(x, y);
-        super.estrelas.add(estrela);
-    }
-}
+   
 }
