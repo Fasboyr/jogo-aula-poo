@@ -4,10 +4,10 @@ package br.ifpr.jogo.modelo;
 
 import javax.swing.ImageIcon;
 
-public class Estrela extends ElementoGrafico {
+public class Sucata extends ElementoGrafico {
     private static int VELOCIDADE = 1;
 
-    public Estrela(int xAleatorio, int yAleatorio) {
+    public Sucata(int xAleatorio, int yAleatorio) {
         this.carregar();
         super.setPosicaoEmX(xAleatorio);
         super.setPosicaoEmY(yAleatorio);

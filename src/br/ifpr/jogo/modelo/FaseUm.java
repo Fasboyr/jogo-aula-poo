@@ -44,12 +44,12 @@ public class FaseUm extends Fase {
 
     @Override
     public void inicializaElementosGraficosAdicionais() {
-        super.estrelas = new ArrayList<Estrela>();
+        super.sucatas = new ArrayList<Sucata>();
         for (int i = 0; i < QTDE_DE_ESTRELAS; i++) {
             int x = (int) (Math.random() * 1600);
             int y = (int) (Math.random() * 900);
-            Estrela estrela = new Estrela(x, y);
-            super.estrelas.add(estrela);
+            Sucata sucata = new Sucata(x, y);
+            super.sucatas.add(sucata);
         }
     }
 
@@ -58,8 +58,8 @@ public class FaseUm extends Fase {
         Graphics2D graficos = (Graphics2D) g;
         if (emJogo) {
             graficos.drawImage(fundo, 0, 0, null);
-            for (Estrela estrela : estrelas) {
-                graficos.drawImage(estrela.getImagem(), estrela.getPosicaoEmX(),estrela.getPosicaoEmY(), this);
+            for (Sucata sucata :sucatas) {
+                graficos.drawImage(sucata.getImagem(), sucata.getPosicaoEmX(),sucata.getPosicaoEmY(), this);
             }
         
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
@@ -160,8 +160,8 @@ public class FaseUm extends Fase {
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
-        for (Estrela estrela : this.estrelas) {
-            estrela.atualizar();
+        for (Sucata sucata : this.sucatas) {
+            sucata.atualizar();
         }
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (int i = 0; i < tiros.size(); i++) {
