@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.security.Principal;
+
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -133,7 +133,7 @@ public class FaseUm extends Fase {
                 }
                 if (formaInimigo.intersects(formaSuper)) {
                     int pontuacaoAtual = this.personagem.getPontuacao();
-                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
+                    this.personagem.setPontuacao(pontuacaoAtual + (PONTOS_POR_INIMIGO/2));
                     inimigo.setEhVisivel(false);
                 }
             }
@@ -198,6 +198,7 @@ public class FaseUm extends Fase {
                 inimigo.atualizar();
         }
         this.verficarColisoes();
+        personagem.verificarBorda();
         repaint();
     }
 

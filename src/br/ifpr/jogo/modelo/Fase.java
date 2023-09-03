@@ -24,7 +24,7 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     public static final int DELAY = 5;
     public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
     public static final int QTDE_DE_INIMIGOS = 40;
-    public static final int QTDE_DE_ESTRELAS = 40;
+    public static final int QTDE_DE_ESTRELAS = 10;
 
 
     public Fase() {
@@ -53,8 +53,7 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
 
     public abstract void inicializaElementosGraficosAdicionais();
 
-    //personagem.verificarBorda();
-
+   
     @Override
     public void keyTyped(KeyEvent e) {
     }

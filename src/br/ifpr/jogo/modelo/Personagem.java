@@ -34,16 +34,25 @@ public class Personagem extends ElementoGrafico {
              this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
 
     }
-/* 
-    public void verificarBorda(){
-        if(posicaoEmX < 0){
-            posicaoEmX = 0;
+
+
+    public void verificarBorda() {
+        if (super.getPosicaoEmX() < 0) {
+            super.setPosicaoEmX(0);
+        } else if (super.getPosicaoEmX() + super.getLarguraImagem() > 1600) {
+            int limiteEmX = 1600 - super.getLarguraImagem(); 
+            super.setPosicaoEmX(limiteEmX);
         }
-        else if(posicaoEmX > 1600){
-            posicaoEmX = 1600 - 100;
+
+        if (super.getPosicaoEmY() < 0) {
+            super.setPosicaoEmY(0);
+        } else if (super.getPosicaoEmY() + super.getAlturaImagem() > 860) {
+            int limiteEmY = 860 - super.getAlturaImagem();
+            super.setPosicaoEmY(limiteEmY);
         }
     }
-*/
+
+
     public void carregar(){
         ImageIcon carregando = new ImageIcon("recursos\\nave.png");
         this.imagem = carregando.getImage();

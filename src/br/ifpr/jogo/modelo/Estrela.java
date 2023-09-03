@@ -14,7 +14,7 @@ public class Estrela extends ElementoGrafico {
     }
 
     public void carregar() {
-        ImageIcon carregando = new ImageIcon("recursos\\stars.png");
+        ImageIcon carregando = new ImageIcon("recursos\\Debris.png");
         super.setImagem(carregando.getImage());
     }
 
