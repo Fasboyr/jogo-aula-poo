@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
+import br.ifpr.jogo.principal.principal;
+
 public class Personagem extends ElementoGrafico {
     private int deslocamentoEmX;
     private int deslocamentoEmY;
@@ -39,15 +41,15 @@ public class Personagem extends ElementoGrafico {
     public void verificarBorda() {
         if (super.getPosicaoEmX() < 0) {
             super.setPosicaoEmX(0);
-        } else if (super.getPosicaoEmX() + super.getLarguraImagem() > 1600) {
-            int limiteEmX = 1600 - super.getLarguraImagem(); 
+        } else if (super.getPosicaoEmX() + super.getLarguraImagem() > principal.LARGURA_JANELA) {
+            int limiteEmX = principal.LARGURA_JANELA - super.getLarguraImagem(); 
             super.setPosicaoEmX(limiteEmX);
         }
 
         if (super.getPosicaoEmY() < 0) {
             super.setPosicaoEmY(0);
-        } else if (super.getPosicaoEmY() + super.getAlturaImagem() > 860) {
-            int limiteEmY = 860 - super.getAlturaImagem();
+        } else if (super.getPosicaoEmY() + super.getAlturaImagem() > (principal.ALTURA_JANELA - 40)) {
+            int limiteEmY = (principal.ALTURA_JANELA - 40) - super.getAlturaImagem();
             super.setPosicaoEmY(limiteEmY);
         }
     }

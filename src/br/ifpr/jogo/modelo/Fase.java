@@ -18,13 +18,12 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     protected Timer timer;
     protected ArrayList<Inimigo> inimigos;
     protected boolean emJogo = true;
-    protected ArrayList<Sucata> sucatas;
+    protected ArrayList<Nuvem> nuvens;
 
-    public static final int LARGURA_DA_JANELA = 1600;
     public static final int DELAY = 5;
     public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
     public static final int QTDE_DE_INIMIGOS = 40;
-    public static final int QTDE_DE_ESTRELAS = 10;
+    public static final int QTDE_DE_ESTRELAS = 30;
 
 
     public Fase() {

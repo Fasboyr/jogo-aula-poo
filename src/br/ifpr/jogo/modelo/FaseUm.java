@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
+import br.ifpr.jogo.principal.principal;
+
 public class FaseUm extends Fase {
     private static final int PONTOS_POR_INIMIGO = 10;
     private static final int VIDA_POR_COLISAO = 1;
@@ -35,7 +37,7 @@ public class FaseUm extends Fase {
         inimigos = new ArrayList<Inimigo>();
 
         for (int i = 0; i < QTDE_DE_INIMIGOS; i++) {
-            int x = (int) (Math.random() * 8000 + 1024);
+            int x = (int) (Math.random() * 8000 + principal.LARGURA_JANELA);
             int y = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
             inimigos.add(inimigo);
@@ -44,12 +46,12 @@ public class FaseUm extends Fase {
 
     @Override
     public void inicializaElementosGraficosAdicionais() {
-        super.sucatas = new ArrayList<Sucata>();
+        super.nuvens = new ArrayList<Nuvem>();
         for (int i = 0; i < QTDE_DE_ESTRELAS; i++) {
-            int x = (int) (Math.random() * 1600);
-            int y = (int) (Math.random() * 900);
-            Sucata sucata = new Sucata(x, y);
-            super.sucatas.add(sucata);
+            int x = (int) (Math.random() * principal.LARGURA_JANELA);
+            int y = (int) (Math.random() * principal.ALTURA_JANELA);
+            Nuvem nuvem = new Nuvem(x, y);
+            super.nuvens.add(nuvem);
         }
     }
 
@@ -58,8 +60,8 @@ public class FaseUm extends Fase {
         Graphics2D graficos = (Graphics2D) g;
         if (emJogo) {
             graficos.drawImage(fundo, 0, 0, null);
-            for (Sucata sucata :sucatas) {
-                graficos.drawImage(sucata.getImagem(), sucata.getPosicaoEmX(),sucata.getPosicaoEmY(), this);
+            for (Nuvem nuvem :nuvens) {
+                graficos.drawImage(nuvem.getImagem(), nuvem.getPosicaoEmX(),nuvem.getPosicaoEmY(), this);
             }
         
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
@@ -160,14 +162,14 @@ public class FaseUm extends Fase {
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
-        for (Sucata sucata : this.sucatas) {
-            sucata.atualizar();
+        for (Nuvem nuvem : this.nuvens) {
+            nuvem.atualizar();
         }
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (int i = 0; i < tiros.size(); i++) {
 
             Tiro tiro = tiros.get(i);
-            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA || !tiro.getEhVisivel())
+            if (tiro.getPosicaoEmX() > principal.LARGURA_JANELA || !tiro.getEhVisivel())
                 tiros.remove(tiro);
             else
                 tiro.atualizar();
@@ -180,7 +182,7 @@ public class FaseUm extends Fase {
             SuperTiro superTiro = superTiros.get(i);
             // Verificar se (if) a posição do x (tiro.getPosicaoEmX()) é maior do que a
             // largura da nossa janela
-            if (superTiro.getPosicaoEmX() > LARGURA_DA_JANELA || !superTiro.getEhVisivel())
+            if (superTiro.getPosicaoEmX() > principal.LARGURA_JANELA || !superTiro.getEhVisivel())
                 // Remover da lista se estiver fora do campo de visão (LARGURA_DA_JANELA)
                 superTiros.remove(superTiro);
             else
