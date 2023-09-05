@@ -23,13 +23,13 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     public static final int DELAY = 5;
     public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
     public static final int QTDE_DE_INIMIGOS = 40;
-    public static final int QTDE_DE_ESTRELAS = 30;
+    public static final int QTDE_DE_NUVENS = 30;
 
 
     public Fase() {
-        setFocusable(true); // + define o foco inicial do jogo
-        setDoubleBuffered(true); // + Otimização computacional
-        addKeyListener(this); // + Definindo que a própria classe irá controlar os eventos do teclado
+        setFocusable(true); 
+        setDoubleBuffered(true); 
+        addKeyListener(this); 
     }
 
     public void desenhaPontuacao(Graphics2D graficos) {

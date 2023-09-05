@@ -47,7 +47,7 @@ public class FaseUm extends Fase {
     @Override
     public void inicializaElementosGraficosAdicionais() {
         super.nuvens = new ArrayList<Nuvem>();
-        for (int i = 0; i < QTDE_DE_ESTRELAS; i++) {
+        for (int i = 0; i < QTDE_DE_NUVENS; i++) {
             int x = (int) (Math.random() * principal.LARGURA_JANELA);
             int y = (int) (Math.random() * principal.ALTURA_JANELA);
             Nuvem nuvem = new Nuvem(x, y);
@@ -151,12 +151,15 @@ public class FaseUm extends Fase {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE)
+        if (e.getKeyCode() == KeyEvent.VK_SPACE){
             personagem.atirar();
-        if(e.getKeyCode() == KeyEvent.VK_Q)
+        }
+        else if(e.getKeyCode() == KeyEvent.VK_Q){
                 personagem.superAtirar();
-        else
+        }
+        else{
             personagem.mover(e);
+        }
     }
 
     @Override
@@ -181,21 +184,13 @@ public class FaseUm extends Fase {
         }
 
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
-        // Criando um laço de repetição (for). Iremos percorrer toda a lista.
         for (int i = 0; i < superTiros.size(); i++) {
-            // Obter o objeto tiro da posicao i do ArrayList
             SuperTiro superTiro = superTiros.get(i);
-            // Verificar se (if) a posição do x (tiro.getPosicaoEmX()) é maior do que a
-            // largura da nossa janela
             if (superTiro.getPosicaoEmX() > principal.LARGURA_JANELA || !superTiro.getEhVisivel())
-                // Remover da lista se estiver fora do campo de visão (LARGURA_DA_JANELA)
                 superTiros.remove(superTiro);
             else
-        
                 superTiro.atualizar();
         }
-
-
 
         for (int i = 0; i < this.inimigos.size(); i++) {
             Inimigo inimigo = this.inimigos.get(i);
