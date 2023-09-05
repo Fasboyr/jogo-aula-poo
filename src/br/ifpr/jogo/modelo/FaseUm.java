@@ -99,15 +99,20 @@ public class FaseUm extends Fase {
         for (int i = 0; i < this.inimigos.size(); i++) {
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
+            int vidaAtual = this.personagem.getVida();
+            /*if (vidaAtual == 0) {
+                this.personagem.setEhVisivel(false);
+                inimigo.setEhVisivel(false);
+                emJogo = false;
+                }*/
             if (formaInimigo.intersects(formaPersonagem)) {
-                int vidaAtual = this.personagem.getVida();
+                this.personagem.setVida(vidaAtual - VIDA_POR_COLISAO);
+                inimigo.setEhVisivel(false);
                 if (vidaAtual == 0) {
                     this.personagem.setEhVisivel(false);
                     inimigo.setEhVisivel(false);
                     emJogo = false;
                 }
-                this.personagem.setVida(vidaAtual - VIDA_POR_COLISAO);
-                inimigo.setEhVisivel(false);
 
             }
             
