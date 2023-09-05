@@ -22,7 +22,7 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
 
     public static final int DELAY = 5;
     public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
-    public static final int QTDE_DE_INIMIGOS = 40;
+    public static final int QTDE_DE_INIMIGOS = 50;
     public static final int QTDE_DE_NUVENS = 30;
 
 

@@ -4,7 +4,7 @@ package br.ifpr.jogo.modelo;
 
 import javax.swing.ImageIcon;
 
-import br.ifpr.jogo.principal.principal;
+import br.ifpr.jogo.principal.Principal;
 
 public class Nuvem extends ElementoGrafico {
     private static int VELOCIDADE = 1;
@@ -23,8 +23,8 @@ public class Nuvem extends ElementoGrafico {
     @Override
     public void atualizar() {
     if (this.getPosicaoEmX() < 0) {
-        int y = (int) (Math.random() * principal.ALTURA_JANELA);
-        super.setPosicaoEmX(principal.LARGURA_JANELA);
+        int y = (int) (Math.random() * Principal.ALTURA_JANELA);
+        super.setPosicaoEmX(Principal.LARGURA_JANELA);
         super.setPosicaoEmY(y);
     } else {
         super.setPosicaoEmX(super.getPosicaoEmX() - VELOCIDADE);

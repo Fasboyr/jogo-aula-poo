@@ -4,11 +4,11 @@ import javax.swing.JFrame;
 
 import br.ifpr.jogo.modelo.FaseUm;
 
-public class principal extends JFrame {
+public class Principal extends JFrame {
     public static final int LARGURA_JANELA = 1600;
     public static final int ALTURA_JANELA = 900;
 
-    public principal(){
+    public Principal(){
         FaseUm fase  = new FaseUm();
         super.add(fase);
 
@@ -22,7 +22,7 @@ public class principal extends JFrame {
 
     }
     public static void main(String[] args) {
-        principal principal = new principal();
+        Principal principal = new Principal();
         
     }
     

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
-import br.ifpr.jogo.principal.principal;
+import br.ifpr.jogo.principal.Principal;
 
 public class FaseUm extends Fase {
     private static final int PONTOS_POR_INIMIGO = 10;
@@ -37,7 +37,7 @@ public class FaseUm extends Fase {
         inimigos = new ArrayList<Inimigo>();
 
         for (int i = 0; i < QTDE_DE_INIMIGOS; i++) {
-            int x = (int) (Math.random() * 8000 + principal.LARGURA_JANELA);
+            int x = (int) (Math.random() * 8000 + Principal.LARGURA_JANELA);
             int y = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
             inimigos.add(inimigo);
@@ -48,8 +48,8 @@ public class FaseUm extends Fase {
     public void inicializaElementosGraficosAdicionais() {
         super.nuvens = new ArrayList<Nuvem>();
         for (int i = 0; i < QTDE_DE_NUVENS; i++) {
-            int x = (int) (Math.random() * principal.LARGURA_JANELA);
-            int y = (int) (Math.random() * principal.ALTURA_JANELA);
+            int x = (int) (Math.random() * Principal.LARGURA_JANELA);
+            int y = (int) (Math.random() * Principal.ALTURA_JANELA);
             Nuvem nuvem = new Nuvem(x, y);
             super.nuvens.add(nuvem);
         }
@@ -85,6 +85,7 @@ public class FaseUm extends Fase {
             }
             super.desenhaPontuacao(graficos);
             super.desenhaVida(graficos);
+           
         }   else {
             ImageIcon fimDeJogo = new ImageIcon("recursos\\gameover.png");
             graficos.drawImage(fimDeJogo.getImage(), 350, 100, null);
@@ -100,11 +101,7 @@ public class FaseUm extends Fase {
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
             int vidaAtual = this.personagem.getVida();
-            /*if (vidaAtual == 0) {
-                this.personagem.setEhVisivel(false);
-                inimigo.setEhVisivel(false);
-                emJogo = false;
-                }*/
+        
             if (formaInimigo.intersects(formaPersonagem)) {
                 this.personagem.setVida(vidaAtual - VIDA_POR_COLISAO);
                 inimigo.setEhVisivel(false);
@@ -177,7 +174,7 @@ public class FaseUm extends Fase {
         for (int i = 0; i < tiros.size(); i++) {
 
             Tiro tiro = tiros.get(i);
-            if (tiro.getPosicaoEmX() > principal.LARGURA_JANELA || !tiro.getEhVisivel())
+            if (tiro.getPosicaoEmX() > Principal.LARGURA_JANELA || !tiro.getEhVisivel())
                 tiros.remove(tiro);
             else
                 tiro.atualizar();
@@ -186,7 +183,7 @@ public class FaseUm extends Fase {
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (int i = 0; i < superTiros.size(); i++) {
             SuperTiro superTiro = superTiros.get(i);
-            if (superTiro.getPosicaoEmX() > principal.LARGURA_JANELA || !superTiro.getEhVisivel())
+            if (superTiro.getPosicaoEmX() > Principal.LARGURA_JANELA || !superTiro.getEhVisivel())
                 superTiros.remove(superTiro);
             else
                 superTiro.atualizar();
