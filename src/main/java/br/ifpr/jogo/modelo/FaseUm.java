@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
-import br.ifpr.jogo.principal.Principal;
+import br.ifpr.jogo.principal.principal;
 
 public class FaseUm extends Fase {
     private static final int PONTOS_POR_INIMIGO = 10;
@@ -20,7 +20,8 @@ public class FaseUm extends Fase {
     public FaseUm() { 
         super(); 
         this.emJogo = true;
-        ImageIcon carregando = new ImageIcon("recursos\\background.jpg");
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/background.jpg"));
+        
         fundo = carregando.getImage();
         personagem = new Personagem(VELOCIDADE_DE_DESLOCAMENTO);
         personagem.carregar(); 
@@ -37,7 +38,7 @@ public class FaseUm extends Fase {
         inimigos = new ArrayList<Inimigo>();
 
         for (int i = 0; i < QTDE_DE_INIMIGOS; i++) {
-            int x = (int) (Math.random() * 8000 + Principal.LARGURA_JANELA);
+            int x = (int) (Math.random() * 8000 + principal.LARGURA_JANELA);
             int y = (int) (Math.random() * 650 + 30);
             Inimigo inimigo = new Inimigo(x, y);
             inimigos.add(inimigo);
@@ -48,8 +49,8 @@ public class FaseUm extends Fase {
     public void inicializaElementosGraficosAdicionais() {
         super.nuvens = new ArrayList<Nuvem>();
         for (int i = 0; i < QTDE_DE_NUVENS; i++) {
-            int x = (int) (Math.random() * Principal.LARGURA_JANELA);
-            int y = (int) (Math.random() * Principal.ALTURA_JANELA);
+            int x = (int) (Math.random() * principal.LARGURA_JANELA);
+            int y = (int) (Math.random() * principal.ALTURA_JANELA);
             Nuvem nuvem = new Nuvem(x, y);
             super.nuvens.add(nuvem);
         }
@@ -87,7 +88,7 @@ public class FaseUm extends Fase {
             super.desenhaVida(graficos);
            
         }   else {
-            ImageIcon fimDeJogo = new ImageIcon("recursos\\gameover.png");
+            ImageIcon fimDeJogo = new ImageIcon(getClass().getResource("/gameover.png"));
             graficos.drawImage(fimDeJogo.getImage(), 350, 100, null);
         }
         g.dispose();
@@ -174,7 +175,7 @@ public class FaseUm extends Fase {
         for (int i = 0; i < tiros.size(); i++) {
 
             Tiro tiro = tiros.get(i);
-            if (tiro.getPosicaoEmX() > Principal.LARGURA_JANELA || !tiro.getEhVisivel())
+            if (tiro.getPosicaoEmX() > principal.LARGURA_JANELA || !tiro.getEhVisivel())
                 tiros.remove(tiro);
             else
                 tiro.atualizar();
@@ -183,7 +184,7 @@ public class FaseUm extends Fase {
         ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
         for (int i = 0; i < superTiros.size(); i++) {
             SuperTiro superTiro = superTiros.get(i);
-            if (superTiro.getPosicaoEmX() > Principal.LARGURA_JANELA || !superTiro.getEhVisivel())
+            if (superTiro.getPosicaoEmX() > principal.LARGURA_JANELA || !superTiro.getEhVisivel())
                 superTiros.remove(superTiro);
             else
                 superTiro.atualizar();

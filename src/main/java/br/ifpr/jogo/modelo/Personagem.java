@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
-import br.ifpr.jogo.principal.Principal;
+import br.ifpr.jogo.principal.principal;
 
 public class Personagem extends ElementoGrafico {
     private int deslocamentoEmX;
@@ -41,22 +41,22 @@ public class Personagem extends ElementoGrafico {
     public void verificarBorda() {
         if (super.getPosicaoEmX() < 0) {
             super.setPosicaoEmX(0);
-        } else if (super.getPosicaoEmX() + super.getLarguraImagem() > Principal.LARGURA_JANELA) {
-            int limiteEmX = Principal.LARGURA_JANELA - super.getLarguraImagem(); 
+        } else if (super.getPosicaoEmX() + super.getLarguraImagem() > principal.LARGURA_JANELA) {
+            int limiteEmX = principal.LARGURA_JANELA - super.getLarguraImagem(); 
             super.setPosicaoEmX(limiteEmX);
         }
 
         if (super.getPosicaoEmY() < 0) {
             super.setPosicaoEmY(0);
-        } else if (super.getPosicaoEmY() + super.getAlturaImagem() > (Principal.ALTURA_JANELA - 40)) {
-            int limiteEmY = (Principal.ALTURA_JANELA - 40) - super.getAlturaImagem();
+        } else if (super.getPosicaoEmY() + super.getAlturaImagem() > (principal.ALTURA_JANELA - 40)) {
+            int limiteEmY = (principal.ALTURA_JANELA - 40) - super.getAlturaImagem();
             super.setPosicaoEmY(limiteEmY);
         }
     }
 
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\nave.png");
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/nave.png"));
         this.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);
