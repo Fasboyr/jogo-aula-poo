@@ -1,7 +1,9 @@
 package br.ifpr.jogo.modelo;
 
+import javax.persistence.Entity;
 import javax.swing.ImageIcon;
 
+@Entity
 public class Tiro extends ElementoGrafico {
     private static int VELOCIDADE = 20;
 

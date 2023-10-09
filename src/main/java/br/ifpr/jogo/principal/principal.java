@@ -3,7 +3,11 @@ package br.ifpr.jogo.principal;
 
 import javax.swing.JFrame;
 
+import org.hibernate.Session;
+
+import br.ifpr.jogo.conexao.HibernateUtil;
 import br.ifpr.jogo.modelo.FaseUm;
+
 
 public class principal extends JFrame {
     public static final int LARGURA_JANELA = 1600;
@@ -23,6 +27,7 @@ public class principal extends JFrame {
 
     }
     public static void main(String[] args) {
+        Session sessao = HibernateUtil.getSession();
         principal principal = new principal();
         
     }

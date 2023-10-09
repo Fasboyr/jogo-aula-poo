@@ -3,12 +3,40 @@ package br.ifpr.jogo.modelo;
 import java.awt.Image;
 import java.awt.Rectangle;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Transient;
+
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ElementoGrafico {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idElemento_Grafico;
+
+    @Column(name = "posicao_em_x")
     protected int posicaoEmX;
+
+    @Column(name = "posicao_em_y")
     protected int posicaoEmY;
-    protected Image imagem;
+
+    @Column(name = "Largura_Imagem")
     protected int larguraImagem;
+
+    @Column(name = "Altura_Imagem")
     protected int alturaImagem;
+
+    @Transient
+    protected Image imagem;
+
+    @Column(name = "eh_visivel")
     private boolean ehVisivel = true;
 
     public abstract void carregar();
@@ -71,5 +99,16 @@ public abstract class ElementoGrafico {
     public void setEhVisivel(boolean ehVisivel) {
         this.ehVisivel = ehVisivel;
     }
+
+    public Integer getIdElemento_Grafico() {
+        return idElemento_Grafico;
+    }
+
+    public void setIdElemento_Grafico(Integer idElemento_Grafico) {
+        this.idElemento_Grafico = idElemento_Grafico;
+    }
+
+
+    
 
 }

@@ -3,18 +3,33 @@ package br.ifpr.jogo.modelo;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.swing.ImageIcon;
 
 import br.ifpr.jogo.principal.principal;
 
+@Entity
+//@Table(nome = "tb_personagem")
 public class Personagem extends ElementoGrafico {
-    private int deslocamentoEmX;
-    private int deslocamentoEmY;
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
+
+    
+
+    @Column(name = "descolamento_em_x")
+    private int deslocamentoEmX;
+
+    @Column(name = "descolamento_em_y")
+    private int deslocamentoEmY;
+
+    @Column(name = "pontuacao")
     private int pontuacao;
+
     private int vida = 3 ;
 
     private static final int POSIOCAO_INICIAL_EM_X = 100;
@@ -210,4 +225,18 @@ public class Personagem extends ElementoGrafico {
         this.vida = vida;
     }
 
+
+   
+
+
+    public static int getPosiocaoInicialEmX() {
+        return POSIOCAO_INICIAL_EM_X;
+    }
+
+
+    public static int getPosiocaoInicialEmY() {
+        return POSIOCAO_INICIAL_EM_y;
+    }
+
+    
 }
