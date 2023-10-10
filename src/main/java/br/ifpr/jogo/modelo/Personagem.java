@@ -3,11 +3,13 @@ package br.ifpr.jogo.modelo;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.swing.ImageIcon;
 
 import br.ifpr.jogo.principal.principal;
@@ -16,7 +18,6 @@ import br.ifpr.jogo.principal.principal;
 //@Table(nome = "tb_personagem")
 public class Personagem extends ElementoGrafico {
     private int velocidadeDeDeslocamento;
-    private ArrayList<Tiro> tiros;
     private ArrayList<SuperTiro> superTiros;
 
     
@@ -29,6 +30,9 @@ public class Personagem extends ElementoGrafico {
 
     @Column(name = "pontuacao")
     private int pontuacao;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_tiro")
+    private ArrayList<Tiro> tiros;
 
     private int vida = 3 ;
 
