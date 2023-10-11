@@ -17,11 +17,11 @@ import br.ifpr.jogo.principal.principal;
 @Entity
 //@Table(nome = "tb_personagem")
 public class Personagem extends ElementoGrafico {
-    private int velocidadeDeDeslocamento;
-    private ArrayList<SuperTiro> superTiros;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idPersonagem;
     
-
     @Column(name = "descolamento_em_x")
     private int deslocamentoEmX;
 
@@ -31,10 +31,17 @@ public class Personagem extends ElementoGrafico {
     @Column(name = "pontuacao")
     private int pontuacao;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_tiro")
+   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_tiro")
     private ArrayList<Tiro> tiros;
 
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_super_tiro")
+    private ArrayList<SuperTiro> superTiros;
+
+    @Column(name = "vida")
     private int vida = 3 ;
+
+    @Column(name = "velocidade_de_deslocamento")
+    private int velocidadeDeDeslocamento;
 
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
@@ -242,5 +249,13 @@ public class Personagem extends ElementoGrafico {
         return POSIOCAO_INICIAL_EM_y;
     }
 
+
+    public Integer getIdPersonagem() {
+        return this.idPersonagem;
+    }
+
+    public void setIdPersonagem(Integer idPersonagem) {
+        this.idPersonagem = idPersonagem;
+    }
     
 }

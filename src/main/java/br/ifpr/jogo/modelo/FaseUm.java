@@ -8,12 +8,23 @@ import java.awt.event.KeyEvent;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 import br.ifpr.jogo.principal.principal;
 
+@Entity
 public class FaseUm extends Fase {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idFase_Um;
+
+
     private static final int PONTOS_POR_INIMIGO = 10;
     private static final int VIDA_POR_COLISAO = 1;
 
@@ -202,5 +213,14 @@ public class FaseUm extends Fase {
         repaint();
     }
 
+
+    public Integer getIdFase_Um() {
+        return this.idFase_Um;
+    }
+
+    public void setIdFase_Um(Integer idFase_Um) {
+        this.idFase_Um = idFase_Um;
+    }
+    
    
 }

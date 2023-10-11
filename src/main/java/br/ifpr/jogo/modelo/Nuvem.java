@@ -3,11 +3,19 @@ package br.ifpr.jogo.modelo;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.swing.ImageIcon;
 import br.ifpr.jogo.principal.principal;
 
 @Entity
 public class Nuvem extends ElementoGrafico {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idNuvem;
+
     private static int VELOCIDADE = 1;
 
     public Nuvem(int xAleatorio, int yAleatorio) {
@@ -31,4 +39,13 @@ public class Nuvem extends ElementoGrafico {
         super.setPosicaoEmX(super.getPosicaoEmX() - VELOCIDADE);
         }
     }
+
+    public Integer getIdNuvem() {
+        return this.idNuvem;
+    }
+
+    public void setIdNuvem(Integer idNuvem) {
+        this.idNuvem = idNuvem;
+    }
+
 }

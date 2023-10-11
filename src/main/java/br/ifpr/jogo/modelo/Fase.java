@@ -9,16 +9,47 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Fase extends JPanel implements KeyListener, ActionListener{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idFase;
+
+    @Transient
     protected Image  fundo;
+
+    @Column(name = "personagem")
     protected Personagem personagem;
+
+    @Column(name = "timer")
     protected Timer timer;
+
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_inimigo")
     protected ArrayList<Inimigo> inimigos;
+
+    @Column(name = "em_jogo")
     protected boolean emJogo = true;
+
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_nuvem")
     protected ArrayList<Nuvem> nuvens;
+
+
+    
 
     public static final int DELAY = 5;
     public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
@@ -65,5 +96,67 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
 
     @Override
     public abstract void actionPerformed(ActionEvent e);
+
+
+    public Integer getIdFase() {
+        return this.idFase;
+    }
+
+    public void setIdFase(Integer idFase) {
+        this.idFase = idFase;
+    }
+
+    public Image getFundo() {
+        return this.fundo;
+    }
+
+    public void setFundo(Image fundo) {
+        this.fundo = fundo;
+    }
+
+    public Personagem getPersonagem() {
+        return this.personagem;
+    }
+
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
+    }
+
+    public Timer getTimer() {
+        return this.timer;
+    }
+
+    public void setTimer(Timer timer) {
+        this.timer = timer;
+    }
+
+    public ArrayList<Inimigo> getInimigos() {
+        return this.inimigos;
+    }
+
+    public void setInimigos(ArrayList<Inimigo> inimigos) {
+        this.inimigos = inimigos;
+    }
+
+    public boolean isEmJogo() {
+        return this.emJogo;
+    }
+
+    public boolean getEmJogo() {
+        return this.emJogo;
+    }
+
+    public void setEmJogo(boolean emJogo) {
+        this.emJogo = emJogo;
+    }
+
+    public ArrayList<Nuvem> getNuvens() {
+        return this.nuvens;
+    }
+
+    public void setNuvens(ArrayList<Nuvem> nuvens) {
+        this.nuvens = nuvens;
+    }
+
 }
 

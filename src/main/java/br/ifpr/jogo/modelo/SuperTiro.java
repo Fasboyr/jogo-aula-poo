@@ -1,9 +1,18 @@
 package br.ifpr.jogo.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.swing.ImageIcon;
 
+@Entity
 public class SuperTiro extends ElementoGrafico {
     private static int VELOCIDADE = 30;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer idSuper_Tiro;
 
     public SuperTiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
         this.posicaoEmX = posicaoPersonagemEmX;
@@ -19,6 +28,15 @@ public class SuperTiro extends ElementoGrafico {
 
     public void atualizar() {
     this.posicaoEmX = this.posicaoEmX + VELOCIDADE;
+    }
+
+
+    public Integer getIdSuper_Tiro() {
+        return this.idSuper_Tiro;
+    }
+
+    public void setIdSuper_Tiro(Integer idSuper_Tiro) {
+        this.idSuper_Tiro = idSuper_Tiro;
     }
 
 
