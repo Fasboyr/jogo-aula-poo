@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import java.util.ArrayList;
 
@@ -19,14 +20,13 @@ import br.ifpr.jogo.principal.principal;
 
 @Entity
 public class FaseUm extends Fase {
+    private static final int PONTOS_POR_INIMIGO = 10;
+    private static final int VIDA_POR_COLISAO = 1;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idFase_Um;
 
-
-    private static final int PONTOS_POR_INIMIGO = 10;
-    private static final int VIDA_POR_COLISAO = 1;
 
     public FaseUm() { 
         super(); 
@@ -77,13 +77,13 @@ public class FaseUm extends Fase {
             }
         
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
-            ArrayList<Tiro> tiros = personagem.getTiros();
+            List<Tiro> tiros = personagem.getTiros();
             for (Tiro tiro : tiros) { 
                 tiro.carregar();
                 graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
             }
 
-            ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
+            List<SuperTiro> superTiros = personagem.getSuperTiros();
             for (SuperTiro superTiro : superTiros) {
                 superTiro.carregar();
                 graficos.drawImage(superTiro.getImagem(), superTiro.getPosicaoEmX(), superTiro.getPosicaoEmY(), this);
@@ -125,7 +125,7 @@ public class FaseUm extends Fase {
 
             }
             
-            ArrayList<Tiro> tiros = this.personagem.getTiros();
+            List<Tiro> tiros = this.personagem.getTiros();
             for (int j = 0; j < tiros.size(); j++) {
                 Tiro tiro = tiros.get(j);
                 Rectangle formaTiro = tiro.getRectangle();
@@ -140,7 +140,7 @@ public class FaseUm extends Fase {
                     tiro.setEhVisivel(false);
                 }
             }
-            ArrayList<SuperTiro> superTiros = this.personagem.getSuperTiros();
+            List<SuperTiro> superTiros = this.personagem.getSuperTiros();
             for (int s = 0; s < superTiros.size(); s++) {
                 SuperTiro superTiro = superTiros.get(s);
                 Rectangle formaSuper =superTiro.getRectangle();
@@ -182,7 +182,7 @@ public class FaseUm extends Fase {
         for (Nuvem nuvem : this.nuvens) {
             nuvem.atualizar();
         }
-        ArrayList<Tiro> tiros = personagem.getTiros();
+        List<Tiro> tiros = personagem.getTiros();
         for (int i = 0; i < tiros.size(); i++) {
 
             Tiro tiro = tiros.get(i);
@@ -192,7 +192,7 @@ public class FaseUm extends Fase {
                 tiro.atualizar();
         }
 
-        ArrayList<SuperTiro> superTiros = personagem.getSuperTiros();
+        List<SuperTiro> superTiros = personagem.getSuperTiros();
         for (int i = 0; i < superTiros.size(); i++) {
             SuperTiro superTiro = superTiros.get(i);
             if (superTiro.getPosicaoEmX() > principal.LARGURA_JANELA || !superTiro.getEhVisivel())

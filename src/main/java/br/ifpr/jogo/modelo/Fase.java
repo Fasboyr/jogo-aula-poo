@@ -7,9 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,13 +24,18 @@ import javax.swing.Timer;
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Fase extends JPanel implements KeyListener, ActionListener{
+    public static final int DELAY = 5;
+    public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
+    public static final int QTDE_DE_INIMIGOS = 50;
+    public static final int QTDE_DE_NUVENS = 30;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idFase;
 
     @Transient
-    protected Image  fundo;
+    protected Image fundo;
 
     @Column(name = "personagem")
     protected Personagem personagem;
@@ -39,22 +43,15 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     @Column(name = "timer")
     protected Timer timer;
 
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_inimigo")
-    protected ArrayList<Inimigo> inimigos;
+    @OneToMany(mappedBy = "fase")
+    protected List<Inimigo> inimigos;
 
     @Column(name = "em_jogo")
     protected boolean emJogo = true;
 
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_nuvem")
-    protected ArrayList<Nuvem> nuvens;
+    @OneToMany(mappedBy = "fase")
+    protected List<Nuvem> nuvens;
 
-
-    
-
-    public static final int DELAY = 5;
-    public static final int VELOCIDADE_DE_DESLOCAMENTO = 7;
-    public static final int QTDE_DE_INIMIGOS = 50;
-    public static final int QTDE_DE_NUVENS = 30;
 
 
     public Fase() {
@@ -130,11 +127,11 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
         this.timer = timer;
     }
 
-    public ArrayList<Inimigo> getInimigos() {
+    public List<Inimigo> getInimigos() {
         return this.inimigos;
     }
 
-    public void setInimigos(ArrayList<Inimigo> inimigos) {
+    public void setInimigos(List<Inimigo> inimigos) {
         this.inimigos = inimigos;
     }
 
@@ -150,13 +147,14 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
         this.emJogo = emJogo;
     }
 
-    public ArrayList<Nuvem> getNuvens() {
+    public List<Nuvem> getNuvens() {
         return this.nuvens;
     }
 
-    public void setNuvens(ArrayList<Nuvem> nuvens) {
+    public void setNuvens(List<Nuvem> nuvens) {
         this.nuvens = nuvens;
     }
+    
 
 }
 

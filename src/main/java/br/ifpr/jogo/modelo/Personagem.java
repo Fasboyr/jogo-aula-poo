@@ -2,8 +2,8 @@ package br.ifpr.jogo.modelo;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.swing.ImageIcon;
 
+
 import br.ifpr.jogo.principal.principal;
 
 @Entity
 //@Table(nome = "tb_personagem")
 public class Personagem extends ElementoGrafico {
+    private static final int POSIOCAO_INICIAL_EM_X = 100;
+    private static final int POSIOCAO_INICIAL_EM_y = 100;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,20 +34,17 @@ public class Personagem extends ElementoGrafico {
     @Column(name = "pontuacao")
     private int pontuacao;
 
-   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_tiro")
-    private ArrayList<Tiro> tiros;
+    @OneToMany(mappedBy = "personagem")
+    private List<Tiro> tiros;
 
-    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_super_tiro")
-    private ArrayList<SuperTiro> superTiros;
+    @OneToMany(mappedBy = "personagem")
+    private List<SuperTiro> superTiros;
 
     @Column(name = "vida")
     private int vida = 3 ;
 
     @Column(name = "velocidade_de_deslocamento")
     private int velocidadeDeDeslocamento;
-
-    private static final int POSIOCAO_INICIAL_EM_X = 100;
-    private static final int POSIOCAO_INICIAL_EM_y = 100;
 
     public Personagem(){
         this.posicaoEmX = POSIOCAO_INICIAL_EM_X;
@@ -203,7 +203,7 @@ public class Personagem extends ElementoGrafico {
         this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
     }
 
-    public ArrayList<Tiro> getTiros() {
+    public List<Tiro> getTiros() {
         return this.tiros;
     }
 
@@ -211,7 +211,7 @@ public class Personagem extends ElementoGrafico {
         this.tiros = tiros;
     }
 
-    public ArrayList<SuperTiro> getSuperTiros() {
+    public List<SuperTiro> getSuperTiros() {
         return this.superTiros;
     }
 

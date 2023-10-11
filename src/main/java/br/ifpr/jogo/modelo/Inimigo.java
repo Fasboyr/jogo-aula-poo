@@ -5,16 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.swing.ImageIcon;
 
 @Entity
 public class Inimigo extends ElementoGrafico {
     private static int VELOCIDADE = 2;
 
-    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idInimigo;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_fase")
+    private Fase fase;
 
     public Inimigo(int xAleatorio, int yAleatorio) {
         this.posicaoEmX = xAleatorio;
@@ -40,6 +45,14 @@ public class Inimigo extends ElementoGrafico {
 
     public void setIdInimigo(Integer idInimigo) {
         this.idInimigo = idInimigo;
+    }
+
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
     
 }

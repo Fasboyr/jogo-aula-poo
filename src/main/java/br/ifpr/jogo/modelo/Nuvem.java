@@ -6,17 +6,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.swing.ImageIcon;
 import br.ifpr.jogo.principal.principal;
 
 @Entity
 public class Nuvem extends ElementoGrafico {
-    
+    private static int VELOCIDADE = 1;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idNuvem;
 
-    private static int VELOCIDADE = 1;
+    @ManyToOne
+    @JoinColumn(name = "fk_fase")
+    private Fase fase;
+
 
     public Nuvem(int xAleatorio, int yAleatorio) {
         this.carregar();
@@ -46,6 +52,14 @@ public class Nuvem extends ElementoGrafico {
 
     public void setIdNuvem(Integer idNuvem) {
         this.idNuvem = idNuvem;
+    }
+
+    public Fase getFase() {
+        return fase;
+    }
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
 
 }

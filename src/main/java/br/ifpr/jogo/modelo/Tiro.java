@@ -4,17 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.swing.ImageIcon;
 
 @Entity
 public class Tiro extends ElementoGrafico {
+    
+    private static int VELOCIDADE = 20;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idTiro;
 
+    @ManyToOne
+    @JoinColumn(name = "fk_personagem")
+    private Personagem personagem;
 
-    private static int VELOCIDADE = 20;
 
     public Tiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
         this.posicaoEmX = posicaoPersonagemEmX;
@@ -40,6 +46,14 @@ public class Tiro extends ElementoGrafico {
     public void setIdTiro(Integer idTiro) {
         this.idTiro = idTiro;
     }
-    
 
+    public Personagem getPersonagem() {
+        return personagem;
+    }
+
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
+    }
+
+    
 }

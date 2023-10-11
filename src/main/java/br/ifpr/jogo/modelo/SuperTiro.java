@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.swing.ImageIcon;
 
 @Entity
@@ -13,6 +15,10 @@ public class SuperTiro extends ElementoGrafico {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer idSuper_Tiro;
+
+    @ManyToOne
+    @JoinColumn(name = "fk_personagem")
+    private Personagem personagem;
 
     public SuperTiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
         this.posicaoEmX = posicaoPersonagemEmX;
@@ -39,5 +45,12 @@ public class SuperTiro extends ElementoGrafico {
         this.idSuper_Tiro = idSuper_Tiro;
     }
 
+    public Personagem getPersonagem() {
+        return personagem;
+    }
+
+    public void setPersonagem(Personagem personagem) {
+        this.personagem = personagem;
+    }
 
 }
