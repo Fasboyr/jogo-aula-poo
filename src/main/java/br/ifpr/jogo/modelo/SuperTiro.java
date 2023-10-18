@@ -12,9 +12,7 @@ import javax.swing.ImageIcon;
 public class SuperTiro extends ElementoGrafico {
     private static int VELOCIDADE = 30;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idSuper_Tiro;
+   
 
     @ManyToOne
     @JoinColumn(name = "fk_personagem")
@@ -36,14 +34,6 @@ public class SuperTiro extends ElementoGrafico {
     this.posicaoEmX = this.posicaoEmX + VELOCIDADE;
     }
 
-
-    public Integer getIdSuper_Tiro() {
-        return this.idSuper_Tiro;
-    }
-
-    public void setIdSuper_Tiro(Integer idSuper_Tiro) {
-        this.idSuper_Tiro = idSuper_Tiro;
-    }
 
     public Personagem getPersonagem() {
         return personagem;

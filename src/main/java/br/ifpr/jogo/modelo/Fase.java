@@ -18,8 +18,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.CascadeType;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
+//import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -37,10 +42,12 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     @Transient
     protected Image fundo;
 
-    @Column(name = "personagem")
+
+    @OneToOne
+    @JoinColumn(name = "personagem_id")
     protected Personagem personagem;
 
-    @Column(name = "timer")
+    @Transient
     protected Timer timer;
 
     @OneToMany(mappedBy = "fase")

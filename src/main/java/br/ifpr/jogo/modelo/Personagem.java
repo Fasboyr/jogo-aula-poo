@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.swing.ImageIcon;
 
 
@@ -21,10 +22,10 @@ public class Personagem extends ElementoGrafico {
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idPersonagem;
-    
+  
+    @OneToOne(mappedBy = "personagem")
+    private Fase fase;
+
     @Column(name = "descolamento_em_x")
     private int deslocamentoEmX;
 
@@ -250,12 +251,16 @@ public class Personagem extends ElementoGrafico {
     }
 
 
-    public Integer getIdPersonagem() {
-        return this.idPersonagem;
+    public Fase getFase() {
+        return fase;
     }
 
-    public void setIdPersonagem(Integer idPersonagem) {
-        this.idPersonagem = idPersonagem;
+
+    public void setFase(Fase fase) {
+        this.fase = fase;
     }
+
+
+   
     
 }

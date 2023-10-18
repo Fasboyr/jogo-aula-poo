@@ -13,10 +13,6 @@ import javax.swing.ImageIcon;
 public class Inimigo extends ElementoGrafico {
     private static int VELOCIDADE = 2;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idInimigo;
-
     @ManyToOne
     @JoinColumn(name = "fk_fase")
     private Fase fase;
@@ -39,13 +35,7 @@ public class Inimigo extends ElementoGrafico {
     }
 
 
-    public Integer getIdInimigo() {
-        return this.idInimigo;
-    }
 
-    public void setIdInimigo(Integer idInimigo) {
-        this.idInimigo = idInimigo;
-    }
 
     public Fase getFase() {
         return fase;

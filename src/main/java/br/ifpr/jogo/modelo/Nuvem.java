@@ -15,9 +15,7 @@ import br.ifpr.jogo.principal.principal;
 public class Nuvem extends ElementoGrafico {
     private static int VELOCIDADE = 1;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idNuvem;
+ 
 
     @ManyToOne
     @JoinColumn(name = "fk_fase")
@@ -46,13 +44,7 @@ public class Nuvem extends ElementoGrafico {
         }
     }
 
-    public Integer getIdNuvem() {
-        return this.idNuvem;
-    }
-
-    public void setIdNuvem(Integer idNuvem) {
-        this.idNuvem = idNuvem;
-    }
+   
 
     public Fase getFase() {
         return fase;

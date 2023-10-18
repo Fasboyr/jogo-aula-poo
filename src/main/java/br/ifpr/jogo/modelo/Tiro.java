@@ -13,9 +13,6 @@ public class Tiro extends ElementoGrafico {
     
     private static int VELOCIDADE = 20;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer idTiro;
 
     @ManyToOne
     @JoinColumn(name = "fk_personagem")
@@ -39,14 +36,7 @@ public class Tiro extends ElementoGrafico {
     }
 
 
-    public Integer getIdTiro() {
-        return this.idTiro;
-    }
-
-    public void setIdTiro(Integer idTiro) {
-        this.idTiro = idTiro;
-    }
-
+ 
     public Personagem getPersonagem() {
         return personagem;
     }
