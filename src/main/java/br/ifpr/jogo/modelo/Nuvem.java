@@ -3,9 +3,7 @@ package br.ifpr.jogo.modelo;
 
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.swing.ImageIcon;
@@ -14,8 +12,6 @@ import br.ifpr.jogo.principal.principal;
 @Entity
 public class Nuvem extends ElementoGrafico {
     private static int VELOCIDADE = 1;
-
- 
 
     @ManyToOne
     @JoinColumn(name = "fk_fase")
