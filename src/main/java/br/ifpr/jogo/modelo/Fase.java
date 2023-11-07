@@ -9,6 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -41,21 +42,20 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     @Transient
     protected Image fundo;
 
-
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "personagem_id")
     protected Personagem personagem;
 
     @Transient
     protected Timer timer;
 
-    @OneToMany(mappedBy = "fase")
+    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL)
     protected List<Inimigo> inimigos;
 
     @Column(name = "em_jogo")
     protected boolean emJogo = true;
 
-    @OneToMany(mappedBy = "fase")
+    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL)
     protected List<Nuvem> nuvens;
 
 
@@ -161,6 +161,22 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
         this.nuvens = nuvens;
     }
     
+    /*
+    
+    public void getFaseAtual(Fase fase){
+        fase.setPersonagem(getPersonagem());
+        fase.setInimigos(getInimigos());
+        fase.setNuvens(getNuvens());
+    }
+
+    public void faseSalvar(){
+        Fase faseAtual = new Fase();
+    
+        getFaseAtual(faseAtual);
+
+        FaseServico.inserir(faseAtual);
+    }
+     */
 
 }
 

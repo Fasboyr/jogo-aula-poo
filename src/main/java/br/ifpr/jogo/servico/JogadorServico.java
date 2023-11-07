@@ -2,7 +2,8 @@ package br.ifpr.jogo.servico;
 
 import br.ifpr.jogo.modelo.Jogador;
 import br.ifpr.jogo.dao.JogadorDao;
-import br.ifpr.jogo.dao.JogadorDaoImpl;
+import br.ifpr.jogo.dao.impl.JogadorDaoImpl;
+
 import java.util.List;
 
 

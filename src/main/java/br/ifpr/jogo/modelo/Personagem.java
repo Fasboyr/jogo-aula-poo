@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ public class Personagem extends ElementoGrafico {
     private static final int POSIOCAO_INICIAL_EM_y = 100;
 
   
-    @OneToOne(mappedBy = "personagem")
+    @OneToOne(mappedBy = "personagem", cascade = CascadeType.ALL)
     private Fase fase;
 
     @Column(name = "descolamento_em_x")
@@ -32,10 +33,10 @@ public class Personagem extends ElementoGrafico {
     @Column(name = "pontuacao")
     private int pontuacao;
 
-    @OneToMany(mappedBy = "personagem")
+    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL)
     private List<Tiro> tiros;
 
-    @OneToMany(mappedBy = "personagem")
+    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL)
     private List<SuperTiro> superTiros;
 
     @Column(name = "vida")

@@ -12,6 +12,7 @@ import javax.persistence.Entity;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
+import br.ifpr.jogo.dao.impl.FaseUmDaoImpl;
 import br.ifpr.jogo.principal.principal;
 
 @Entity
@@ -155,6 +156,14 @@ public class FaseUm extends Fase {
         } else {
             personagem.mover(e);
         }
+        if(e.getKeyCode() == KeyEvent.VK_P){
+            faseSalvar(this);
+        }
+    }
+
+    private void faseSalvar(FaseUm faseUm) {
+        FaseUmDaoImpl dao = new FaseUmDaoImpl();
+        dao.inserir(faseUm);
     }
 
     @Override

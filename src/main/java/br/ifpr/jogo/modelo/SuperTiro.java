@@ -1,5 +1,6 @@
 package br.ifpr.jogo.modelo;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -11,7 +12,7 @@ public class SuperTiro extends ElementoGrafico {
 
    
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_personagem")
     private Personagem personagem;
 

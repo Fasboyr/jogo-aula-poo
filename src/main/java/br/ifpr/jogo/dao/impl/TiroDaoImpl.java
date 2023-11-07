@@ -1,37 +1,38 @@
-package br.ifpr.jogo.dao;
+package br.ifpr.jogo.dao.impl;
 
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import br.ifpr.jogo.conexao.HibernateUtil;
-import br.ifpr.jogo.modelo.Jogador;
+import br.ifpr.jogo.dao.TiroDao;
+import br.ifpr.jogo.modelo.Tiro;
 
-public class JogadorDaoImpl implements JogadorDao {
+public class TiroDaoImpl implements TiroDao {
 
     private Session sessao;
 
-    public JogadorDaoImpl() {
+    public TiroDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
 
     @Override
-    public List<Jogador> buscarTodos() {
-        Query<Jogador> query = this.sessao.createQuery("from Jogador",
-    Jogador.class);
-        List<Jogador> jogadores = query.getResultList();
-        return jogadores;
+    public List<Tiro> buscarTodos() {
+        Query<Tiro> query = this.sessao.createQuery("from Tiro",
+    Tiro.class);
+        List<Tiro> tiros = query.getResultList();
+        return tiros;
     }
 
     @Override
-    public Jogador buscarPorId(Integer id) {
-        return this.sessao.find(Jogador.class, id);
+    public Tiro buscarPorId(Integer id) {
+        return this.sessao.find(Tiro.class, id);
     }
 
     @Override
-    public void inserir(Jogador jogador) {
+    public void inserir(Tiro tiro) {
         try {
             sessao.beginTransaction();
-            sessao.persist(jogador);
+            sessao.persist(tiro);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,10 +40,10 @@ public class JogadorDaoImpl implements JogadorDao {
     }
 
     @Override
-    public void atualizar(Jogador jogador) {
+    public void atualizar(Tiro tiro) {
     try {
         sessao.beginTransaction();
-        sessao.merge(jogador);
+        sessao.merge(tiro);
         sessao.getTransaction().commit();
     } catch (Exception e) {
         e.printStackTrace();
@@ -50,10 +51,10 @@ public class JogadorDaoImpl implements JogadorDao {
     }
 
     @Override
-    public void excluir(Jogador jogador) {
+    public void excluir(Tiro tiro) {
     try {
         sessao.beginTransaction();
-        sessao.remove(jogador);
+        sessao.remove(tiro);
         sessao.getTransaction().commit();
     } catch (Exception e) {
         e.printStackTrace();

@@ -2,6 +2,7 @@ package br.ifpr.jogo.modelo;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 
 import javax.persistence.JoinColumn;
@@ -13,7 +14,7 @@ import br.ifpr.jogo.principal.principal;
 public class Nuvem extends ElementoGrafico {
     private static int VELOCIDADE = 1;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_fase")
     private Fase fase;
 
