@@ -168,6 +168,7 @@ public class FaseUm extends Fase {
         }else if(e.getKeyCode() == KeyEvent.VK_L){
             faseCarregar();
         }
+
     }
 
     private void faseSalvar() {
@@ -190,6 +191,8 @@ public class FaseUm extends Fase {
             
             this.faseEntidade = instanciaCarregada;
             this.faseEntidade.getPersonagem().carregar();
+            this.faseEntidade.getPersonagem().setDeslocamentoEmX(0);
+            this.faseEntidade.getPersonagem().setDeslocamentoEmY(0);
 
             for (Inimigo inimigo : this.faseEntidade.getInimigos()) {
                 inimigo.carregar();
@@ -203,6 +206,7 @@ public class FaseUm extends Fase {
             for (SuperTiro superTiro : this.faseEntidade.getPersonagem().getSuperTiros()) {
                 superTiro.carregar();
             }
+
         }
     }
 
