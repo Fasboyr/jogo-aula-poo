@@ -82,7 +82,7 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
 
     public abstract void inicializaInimigos();
 
-    public abstract void verficarColisoes();
+    public abstract void verificarColisoes();
 
     public abstract void inicializaElementosGraficosAdicionais();
 
@@ -161,22 +161,6 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
         this.nuvens = nuvens;
     }
     
-    /*
-    
-    public void getFaseAtual(Fase fase){
-        fase.setPersonagem(getPersonagem());
-        fase.setInimigos(getInimigos());
-        fase.setNuvens(getNuvens());
-    }
-
-    public void faseSalvar(){
-        Fase faseAtual = new Fase();
-    
-        getFaseAtual(faseAtual);
-
-        FaseServico.inserir(faseAtual);
-    }
-     */
 
 }
 

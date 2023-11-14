@@ -15,6 +15,8 @@ public class Inimigo extends ElementoGrafico {
     @JoinColumn(name = "fk_fase")
     private Fase fase;
 
+    public Inimigo(){}
+
     public Inimigo(int xAleatorio, int yAleatorio) {
         this.posicaoEmX = xAleatorio;
         this.posicaoEmY = yAleatorio;
@@ -31,8 +33,6 @@ public class Inimigo extends ElementoGrafico {
     public void atualizar() {
     this.posicaoEmX = this.posicaoEmX - VELOCIDADE;
     }
-
-
 
 
     public Fase getFase() {

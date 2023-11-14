@@ -1,7 +1,9 @@
 package br.ifpr.jogo.dao.impl;
 
+import java.math.BigInteger;
 import java.util.List;
 import org.hibernate.Session;
+import org.hibernate.query.NativeQuery;
 import org.hibernate.query.Query;
 import br.ifpr.jogo.conexao.HibernateUtil;
 import br.ifpr.jogo.dao.FaseUmDao;
@@ -61,5 +63,17 @@ public class FaseUmDaoImpl implements FaseUmDao {
         e.printStackTrace();
         }
     }
-    
+ 
+    @Override
+    public boolean verificarDadosExistem() {
+        try {
+            Query<?> query = this.sessao.createSQLQuery("SELECT 1 FROM faseum LIMIT 1");
+            return query.uniqueResult() != null;
+        } catch (Exception e) {
+            System.err.println("Erro ao verificar a existência de dados: ");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

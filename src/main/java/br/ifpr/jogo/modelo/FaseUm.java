@@ -97,7 +97,7 @@ public class FaseUm extends Fase {
     }
 
     @Override
-    public void verficarColisoes() {
+    public void verificarColisoes() {
         Rectangle formaPersonagem = this.personagem.getRectangle();
         for (int i = 0; i < this.inimigos.size(); i++) {
             Inimigo inimigo = inimigos.get(i);
@@ -158,13 +158,42 @@ public class FaseUm extends Fase {
         }
         if(e.getKeyCode() == KeyEvent.VK_P){
             faseSalvar(this);
+        }else if(e.getKeyCode() == KeyEvent.VK_L){
+            faseCarregar();
         }
     }
 
     private void faseSalvar(FaseUm faseUm) {
         FaseUmDaoImpl dao = new FaseUmDaoImpl();
-        dao.inserir(faseUm);
+        boolean dadosExistem = dao.verificarDadosExistem();
+        if(dadosExistem){
+            dao.atualizar(faseUm);
+        }
+        else{
+            dao.inserir(faseUm);
+        }
+        
     }
+    private void faseCarregar() {
+        FaseUmDaoImpl dao = new FaseUmDaoImpl();
+        FaseUm instanciaCarregada = dao.buscarPorId(1);
+        
+        if (instanciaCarregada != null) {
+            
+            this.setPersonagem(instanciaCarregada.getPersonagem());
+            this.setInimigos(instanciaCarregada.getInimigos());
+            this.setNuvens(instanciaCarregada.getNuvens());
+            //this.getInimigos().addAll(instanciaCarregada.getInimigos());
+            //this.getNuvens().addAll(instanciaCarregada.getNuvens());
+            personagem.carregar();
+           
+            for(Inimigo inimigo : inimigos) {
+                inimigo.atualizar();
+            }
+        }
+    }
+
+    
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -203,7 +232,7 @@ public class FaseUm extends Fase {
             else
                 inimigo.atualizar();
         }
-        this.verficarColisoes();
+        this.verificarColisoes();
         personagem.verificarBorda();
         repaint();
     }

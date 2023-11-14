@@ -12,9 +12,15 @@ public class ServicoTeste {
         Jogador local = new Jogador("Joãozinho 2");
         JogadorServico.inserir(local);
 
-        Inimigo inimigo = new Inimigo(100, 200);
+        Inimigo inimigo = new Inimigo(150, 250);
 
         InimigoServico.inserir(inimigo);
+
+        inimigo.setPosicaoEmX(100);
+        inimigo.setPosicaoEmY(200);
+        InimigoServico.atualizar(inimigo);
+       
         
     }
 }
+

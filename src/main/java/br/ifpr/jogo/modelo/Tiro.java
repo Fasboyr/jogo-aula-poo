@@ -16,6 +16,7 @@ public class Tiro extends ElementoGrafico {
     @JoinColumn(name = "fk_personagem")
     private Personagem personagem;
 
+    public Tiro(){}
 
     public Tiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
         this.posicaoEmX = posicaoPersonagemEmX;
@@ -30,7 +31,7 @@ public class Tiro extends ElementoGrafico {
     }
 
     public void atualizar() {
-    this.posicaoEmX = this.posicaoEmX + VELOCIDADE;
+        this.posicaoEmX = this.posicaoEmX + VELOCIDADE;
     }
 
 

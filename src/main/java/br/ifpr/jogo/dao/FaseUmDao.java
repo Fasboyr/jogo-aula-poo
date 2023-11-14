@@ -9,5 +9,6 @@ public interface FaseUmDao {
     public void atualizar(FaseUm faseUm);
     public void excluir(FaseUm faseUm);
     public void inserir(FaseUm faseUm);
+    public boolean verificarDadosExistem();
     
 }

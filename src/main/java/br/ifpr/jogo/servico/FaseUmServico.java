@@ -4,6 +4,7 @@ import br.ifpr.jogo.modelo.FaseUm;
 import br.ifpr.jogo.dao.FaseUmDao;
 import br.ifpr.jogo.dao.impl.FaseUmDaoImpl;
 
+
 import java.util.List;
 
 public class FaseUmServico {
@@ -29,5 +30,10 @@ public class FaseUmServico {
     public static void excluir(FaseUm faseUm) {
         dao.excluir(faseUm);
     }
+ 
+    public static boolean verificarDadosExistem(){
+        return dao.verificarDadosExistem();
+    }
+
     
 }

@@ -18,7 +18,8 @@ public class Nuvem extends ElementoGrafico {
     @JoinColumn(name = "fk_fase")
     private Fase fase;
 
-
+    public Nuvem(){}
+    
     public Nuvem(int xAleatorio, int yAleatorio) {
         this.carregar();
         super.setPosicaoEmX(xAleatorio);

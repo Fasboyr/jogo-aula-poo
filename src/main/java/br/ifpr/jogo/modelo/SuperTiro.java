@@ -16,6 +16,8 @@ public class SuperTiro extends ElementoGrafico {
     @JoinColumn(name = "fk_personagem")
     private Personagem personagem;
 
+    public SuperTiro(){}
+
     public SuperTiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
         this.posicaoEmX = posicaoPersonagemEmX;
         this.posicaoEmY = posicaoPersonagemEmY - 45 ;
