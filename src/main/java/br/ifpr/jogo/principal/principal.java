@@ -29,7 +29,5 @@ public class principal extends JFrame {
     public static void main(String[] args) {
         Session sessao = HibernateUtil.getSession();
         principal principal = new principal();
-        
     }
-    
 }

@@ -1,34 +1,34 @@
 package br.ifpr.jogo.servico;
 
-import br.ifpr.jogo.modelo.FaseUm;
-import br.ifpr.jogo.dao.FaseUmDao;
-import br.ifpr.jogo.dao.impl.FaseUmDaoImpl;
+import br.ifpr.jogo.entidade.FaseEntidade;
+import br.ifpr.jogo.dao.FaseEntidadeDao;
+import br.ifpr.jogo.dao.impl.FaseEntidadeDaoImpl;
 
 
 import java.util.List;
 
 public class FaseUmServico {
 
-    private static FaseUmDao dao = new FaseUmDaoImpl();
+    private static FaseEntidadeDao dao = new FaseEntidadeDaoImpl();
 
-    public static List<FaseUm> buscarTodos() {
+    public static List<FaseEntidade> buscarTodos() {
         return dao.buscarTodos();
     }
 
-    public static FaseUm buscarPorId(Integer id) {
+    public static FaseEntidade buscarPorId(Integer id) {
         return dao.buscarPorId(id);
     }
 
-    public static void inserir(FaseUm faseUm) {
-        dao.inserir(faseUm);
+    public static void inserir(FaseEntidade faseEntidade) {
+        dao.inserir(faseEntidade);
     }
 
-    public static void atualizar(FaseUm faseUm) {
-        dao.atualizar(faseUm);
+    public static void atualizar(FaseEntidade faseEntidade) {
+        dao.atualizar(faseEntidade);
     }
 
-    public static void excluir(FaseUm faseUm) {
-        dao.excluir(faseUm);
+    public static void excluir(FaseEntidade faseEntidade) {
+        dao.excluir(faseEntidade);
     }
  
     public static boolean verificarDadosExistem(){

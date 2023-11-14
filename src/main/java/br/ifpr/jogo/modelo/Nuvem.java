@@ -1,22 +1,13 @@
 package br.ifpr.jogo.modelo;
 
-
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.swing.ImageIcon;
+
 import br.ifpr.jogo.principal.principal;
 
 @Entity
 public class Nuvem extends ElementoGrafico {
     private static int VELOCIDADE = 1;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_fase")
-    private Fase fase;
 
     public Nuvem(){}
     
@@ -41,15 +32,4 @@ public class Nuvem extends ElementoGrafico {
         super.setPosicaoEmX(super.getPosicaoEmX() - VELOCIDADE);
         }
     }
-
-   
-
-    public Fase getFase() {
-        return fase;
-    }
-
-    public void setFase(Fase fase) {
-        this.fase = fase;
-    }
-
 }

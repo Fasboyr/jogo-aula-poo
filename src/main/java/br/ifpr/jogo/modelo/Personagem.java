@@ -20,10 +20,7 @@ public class Personagem extends ElementoGrafico {
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
 
-  
-    @OneToOne(mappedBy = "personagem", cascade = CascadeType.ALL)
-    private Fase fase;
-
+    
     @Column(name = "descolamento_em_x")
     private int deslocamentoEmX;
 
@@ -247,18 +244,6 @@ public class Personagem extends ElementoGrafico {
     public static int getPosiocaoInicialEmY() {
         return POSIOCAO_INICIAL_EM_y;
     }
-
-
-    public Fase getFase() {
-        return fase;
-    }
-
-
-    public void setFase(Fase fase) {
-        this.fase = fase;
-    }
-
-
-   
+ 
     
 }
