@@ -12,10 +12,6 @@ public class SuperTiro extends ElementoGrafico {
 
    
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_personagem")
-    private Personagem personagem;
-
     public SuperTiro(){}
 
     public SuperTiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY) {
@@ -35,12 +31,6 @@ public class SuperTiro extends ElementoGrafico {
     }
 
 
-    public Personagem getPersonagem() {
-        return personagem;
-    }
-
-    public void setPersonagem(Personagem personagem) {
-        this.personagem = personagem;
-    }
+   
 
 }

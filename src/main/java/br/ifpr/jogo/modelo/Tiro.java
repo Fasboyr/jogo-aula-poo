@@ -12,9 +12,7 @@ public class Tiro extends ElementoGrafico {
     private static int VELOCIDADE = 20;
 
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_personagem")
-    private Personagem personagem;
+   
 
     public Tiro(){}
 
@@ -36,13 +34,6 @@ public class Tiro extends ElementoGrafico {
 
 
  
-    public Personagem getPersonagem() {
-        return personagem;
-    }
-
-    public void setPersonagem(Personagem personagem) {
-        this.personagem = personagem;
-    }
 
     
 }

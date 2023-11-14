@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.swing.ImageIcon;
@@ -20,7 +21,7 @@ public class Personagem extends ElementoGrafico {
     private static final int POSIOCAO_INICIAL_EM_X = 100;
     private static final int POSIOCAO_INICIAL_EM_y = 100;
 
-    
+
     @Column(name = "descolamento_em_x")
     private int deslocamentoEmX;
 
@@ -30,10 +31,12 @@ public class Personagem extends ElementoGrafico {
     @Column(name = "pontuacao")
     private int pontuacao;
 
-    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_personagem")
     private List<Tiro> tiros;
 
-    @OneToMany(mappedBy = "personagem", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_personagem")
     private List<SuperTiro> superTiros;
 
     @Column(name = "vida")
@@ -42,6 +45,8 @@ public class Personagem extends ElementoGrafico {
     @Column(name = "velocidade_de_deslocamento")
     private int velocidadeDeDeslocamento;
 
+
+    
     public Personagem(){
         this.posicaoEmX = POSIOCAO_INICIAL_EM_X;
         this.posicaoEmY = POSIOCAO_INICIAL_EM_y;
@@ -203,7 +208,7 @@ public class Personagem extends ElementoGrafico {
         return this.tiros;
     }
 
-    public void setTiros(ArrayList<Tiro> tiros) {
+    public void setTiros(List<Tiro> tiros) {
         this.tiros = tiros;
     }
 
@@ -211,10 +216,10 @@ public class Personagem extends ElementoGrafico {
         return this.superTiros;
     }
 
-    public void setSuperTiros(ArrayList<SuperTiro> superTiros) {
+    public void setSuperTiros(List<SuperTiro> superTiros) {
         this.superTiros = superTiros;
     }
-
+   
     public int getPontuacao() {
         return this.pontuacao;
     }
@@ -231,9 +236,6 @@ public class Personagem extends ElementoGrafico {
     public void setVida(int vida) {
         this.vida = vida;
     }
-
-
-   
 
 
     public static int getPosiocaoInicialEmX() {
