@@ -8,7 +8,10 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
@@ -19,6 +22,12 @@ import br.ifpr.jogo.principal.principal;
 public class FaseUm extends Fase {
     private static final int PONTOS_POR_INIMIGO = 10;
     private static final int VIDA_POR_COLISAO = 1;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_fase")
+    protected List<Inimigo> inimigos;
+
+    
 
     public FaseUm() {
         super();
@@ -34,6 +43,14 @@ public class FaseUm extends Fase {
         this.inicializaInimigos();
         timer = new Timer(DELAY, this);
         timer.start();
+    }
+
+    public List<Inimigo> getInimigos() {
+        return this.inimigos;
+    }
+
+    public void setInimigos(List<Inimigo> inimigos) {
+        this.inimigos = inimigos;
     }
 
     @Override
@@ -188,7 +205,7 @@ public class FaseUm extends Fase {
             personagem.carregar();
            
             for(Inimigo inimigo : inimigos) {
-                inimigo.atualizar();
+                inimigo.carregar();
             }
         }
     }

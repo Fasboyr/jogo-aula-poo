@@ -49,8 +49,7 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     @Transient
     protected Timer timer;
 
-    @OneToMany(mappedBy = "fase", cascade = CascadeType.ALL)
-    protected List<Inimigo> inimigos;
+    
 
     @Column(name = "em_jogo")
     protected boolean emJogo = true;
@@ -131,14 +130,6 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
 
     public void setTimer(Timer timer) {
         this.timer = timer;
-    }
-
-    public List<Inimigo> getInimigos() {
-        return this.inimigos;
-    }
-
-    public void setInimigos(List<Inimigo> inimigos) {
-        this.inimigos = inimigos;
     }
 
     public boolean isEmJogo() {
