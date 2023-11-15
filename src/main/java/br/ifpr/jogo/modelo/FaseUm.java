@@ -73,6 +73,7 @@ public class FaseUm extends Fase {
         this.inicializaElementosGraficosAdicionais();
         this.inicializaInimigos();
         timer.start();
+        timerAtivo = true;
     }
 
     @Override
@@ -110,6 +111,9 @@ public class FaseUm extends Fase {
             super.desenhaMenuGameOver(graficos);
         }else if(!this.faseEntidade.isEmJogo()){
             super.desenhaMenuInicial(graficos);
+            timer.stop();
+        }else if(!this.isTimerAtivo()){
+            super.desenhaMenuPausa(graficos);
             timer.stop();
         }
 
@@ -186,10 +190,10 @@ public class FaseUm extends Fase {
         }else if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
             if(!timerAtivo){
                 timer.start();
-                timerAtivo = true;
+                this.timerAtivo = true;
             }else{
-                timerAtivo = false;
                 timer.stop();
+                this.timerAtivo = false;              
             }
         }
 

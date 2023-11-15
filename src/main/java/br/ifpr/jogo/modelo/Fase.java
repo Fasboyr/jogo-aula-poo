@@ -126,4 +126,26 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     public void setTimer(Timer timer) {
         this.timer = timer;
     }
+
+
+    public boolean isTimerAtivo() {
+        return this.timerAtivo;
+    }
+
+    public boolean getTimerAtivo() {
+        return this.timerAtivo;
+    }
+
+    public void setTimerAtivo(boolean timerAtivo) {
+        this.timerAtivo = timerAtivo;
+    }
+
+    public FaseEntidade getFaseEntidade() {
+        return this.faseEntidade;
+    }
+
+    public void setFaseEntidade(FaseEntidade faseEntidade) {
+        this.faseEntidade = faseEntidade;
+    }
+
 }
