@@ -27,19 +27,18 @@ public class FaseUm extends Fase {
     public FaseUm() {
         super();
         this.faseEntidade = new FaseEntidade();
-        this.faseEntidade.setEmJogo(true);
+        this.faseEntidade.setEmJogo(false);
         ImageIcon carregando = new ImageIcon(getClass().getResource("/background.jpg"));
 
         fundo = carregando.getImage();
         this.faseEntidade.setPersonagem(new Personagem(VELOCIDADE_DE_DESLOCAMENTO));
-        this.faseEntidade.getPersonagem().carregar();
-
-        this.inicializaElementosGraficosAdicionais();
-
-        this.inicializaInimigos();
+        
         timer = new Timer(DELAY, this);
-        timer.start();
+        timerAtivo = false;
     }
+
+
+
 
     @Override
     public void inicializaInimigos() {
@@ -67,10 +66,20 @@ public class FaseUm extends Fase {
     }
 
     @Override
+    public void inicializarJogo(){
+        this.faseEntidade.setEmJogo(true);
+        this.faseEntidade.setPersonagem(new Personagem(VELOCIDADE_DE_DESLOCAMENTO));
+        this.faseEntidade.getPersonagem().carregar();
+        this.inicializaElementosGraficosAdicionais();
+        this.inicializaInimigos();
+        timer.start();
+    }
+
+    @Override
     public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
+        graficos.drawImage(fundo, 0, 0, null);
         if (this.faseEntidade.isEmJogo()) {
-            graficos.drawImage(fundo, 0, 0, null);
             for (Nuvem nuvem : this.faseEntidade.getNuvens()) {
                 graficos.drawImage(nuvem.getImagem(), nuvem.getPosicaoEmX(), nuvem.getPosicaoEmY(), this);
             }
@@ -95,10 +104,15 @@ public class FaseUm extends Fase {
             super.desenhaPontuacao(graficos);
             super.desenhaVida(graficos);
 
-        } else {
+        } else if(this.faseEntidade.getPersonagem().getVida() <= 0 && !this.faseEntidade.isEmJogo()){
             ImageIcon fimDeJogo = new ImageIcon(getClass().getResource("/gameover.png"));
             graficos.drawImage(fimDeJogo.getImage(), 350, 100, null);
+            super.desenhaMenuGameOver(graficos);
+        }else if(!this.faseEntidade.isEmJogo()){
+            super.desenhaMenuInicial(graficos);
+            timer.stop();
         }
+
         g.dispose();
 
     }
@@ -163,14 +177,29 @@ public class FaseUm extends Fase {
         } else {
             this.faseEntidade.getPersonagem().mover(e);
         }
+
+
         if(e.getKeyCode() == KeyEvent.VK_P){
             faseSalvar();
         }else if(e.getKeyCode() == KeyEvent.VK_L){
             faseCarregar();
+        }else if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            if(!timerAtivo){
+                timer.start();
+                timerAtivo = true;
+            }else{
+                timerAtivo = false;
+                timer.stop();
+            }
         }
 
+        if(e.getKeyCode() == KeyEvent.VK_1 && !this.faseEntidade.isEmJogo()){
+            this.inicializarJogo();
+        }else if(e.getKeyCode() == KeyEvent.VK_2 && !this.faseEntidade.isEmJogo() ){
+            faseCarregar();
+        }
     }
-
+  
     private void faseSalvar() {
         FaseEntidadeDaoImpl dao = new FaseEntidadeDaoImpl();
         boolean dadosExistem = dao.verificarDadosExistem();
@@ -206,6 +235,8 @@ public class FaseUm extends Fase {
             for (SuperTiro superTiro : this.faseEntidade.getPersonagem().getSuperTiros()) {
                 superTiro.carregar();
             }
+            timer.start();
+            timerAtivo = true;
 
         }
     }
