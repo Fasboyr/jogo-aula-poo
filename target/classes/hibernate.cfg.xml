@@ -16,7 +16,7 @@
     </property>
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.format_sql">false</property>
-    <property name="hbm2ddl.auto">drop</property>
+    <property name="hbm2ddl.auto">update</property>
 
     <!-- Classes que serão persistidas no tutorial -->
     <mapping class="br.ifpr.jogo.modelo.ElementoGrafico" />

@@ -105,6 +105,11 @@ public class FaseUm extends Fase {
             super.desenhaPontuacao(graficos);
             super.desenhaVida(graficos);
 
+            if(!this.isTimerAtivo()){
+                super.desenhaMenuPausa(graficos);
+                timer.stop();
+            }
+
         } else if(this.faseEntidade.getPersonagem().getVida() <= 0 && !this.faseEntidade.isEmJogo()){
             ImageIcon fimDeJogo = new ImageIcon(getClass().getResource("/gameover.png"));
             graficos.drawImage(fimDeJogo.getImage(), 350, 100, null);
@@ -183,16 +188,15 @@ public class FaseUm extends Fase {
         }
 
 
-        if(e.getKeyCode() == KeyEvent.VK_P){
+        if(e.getKeyCode() == KeyEvent.VK_P && !this.isTimerAtivo()){
             faseSalvar();
-        }else if(e.getKeyCode() == KeyEvent.VK_L){
+        }else if(e.getKeyCode() == KeyEvent.VK_L && !this.isTimerAtivo() ){
             faseCarregar();
         }else if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-            if(!timerAtivo){
+            if(!this.isTimerAtivo()){
                 timer.start();
                 this.timerAtivo = true;
             }else{
-                timer.stop();
                 this.timerAtivo = false;              
             }
         }
