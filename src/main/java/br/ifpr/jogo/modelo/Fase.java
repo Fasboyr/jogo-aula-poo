@@ -48,22 +48,48 @@ public abstract class Fase extends JPanel implements KeyListener, ActionListener
     }
 
     public void desenhaMenuInicial(Graphics2D graficos){
-        String textoTitulo = "----Escolha uma Opção----" ;
-        int altura = 400;
+        int altura_instrucao = 200;
         int tamanho = 30;
+        String textoInstrucao = "------Comandos------" ;
         graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
         graficos.setColor(Color.yellow);
-        graficos.drawString(textoTitulo, 620, altura);
+        graficos.drawString(textoInstrucao, 620, altura_instrucao);
+
+        String textoInstru1 = "Use WASD ou as Setas para controlar o personagem" ;
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
+        graficos.setColor(Color.yellow);
+        graficos.drawString(textoInstru1, 450, altura_instrucao + 30);
+
+        String textoInstru2 = "Pressione Espaço para atirar" ;
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
+        graficos.setColor(Color.yellow);
+        graficos.drawString(textoInstru2, 600, altura_instrucao + 60);
+
+        String textoInstru3 = "Pressione Q para usar o SuperTiro" ;
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
+        graficos.setColor(Color.yellow);
+        graficos.drawString(textoInstru3, 600, altura_instrucao + 90);
+
+        String textoInstru4 = "Pressione ESC para pausar o jogo" ;
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
+        graficos.setColor(Color.yellow);
+        graficos.drawString(textoInstru4, 600, altura_instrucao + 120);
+
+        int altura_init = 400;
+        String textoTitulo = "----Escolha uma Opção----" ;
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
+        graficos.setColor(Color.yellow);
+        graficos.drawString(textoTitulo, 620, altura_init);
 
         String textoOp1 = "1- Iniciar Novo Jogo" ;
         graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
         graficos.setColor(Color.yellow);
-        graficos.drawString(textoOp1, 650, altura + 30);
+        graficos.drawString(textoOp1, 650, altura_init + 30);
 
         String textoOp2 = "2 - Carregar Último Ponto Salvo " ;
         graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, tamanho));
         graficos.setColor(Color.yellow);
-        graficos.drawString(textoOp2, 600, altura + 60);
+        graficos.drawString(textoOp2, 600, altura_init + 60);
     }
 
     public void desenhaMenuPausa(Graphics2D graficos){
