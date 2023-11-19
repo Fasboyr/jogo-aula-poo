@@ -214,6 +214,8 @@ public class FaseUm extends Fase {
         else{
             dao.inserir(faseEntidade);
         }
+        timer.start();
+        timerAtivo = true;
         
     }
     private void faseCarregar() {
